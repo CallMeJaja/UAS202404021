@@ -1,9 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Tema Utama Aplikasi -->
     <style name="Base.Theme.UAS202404021" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Anda bisa menyesuaikan warna di sini nanti -->
     </style>
 
     <style name="Theme.UAS202404021" parent="Base.Theme.UAS202404021" />
+
+    <!-- Tema Khusus untuk Splash Screen API -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Background Splash Screen -->
+        <item name="windowSplashScreenBackground">?android:attr/colorBackground</item>
+        
+        <!-- Ikon Tengah (menggunakan ikon inventory atau ikon launcher) -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_inventory</item>
+        
+        <!-- Tema tujuan setelah splash selesai loading -->
+        <item name="postSplashScreenTheme">@style/Theme.UAS202404021</item>
+    </style>
 </resources>

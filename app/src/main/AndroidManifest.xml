@@ -11,16 +11,36 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.UAS202404021">
+
+        <!-- Splash Activity sebagai titik masuk awal aplikasi dengan tema SplashScreen -->
         <activity
-                android:name=".MainActivity"
-                android:exported="true"
-                android:windowSoftInputMode="adjustResize">
+            android:name=".presentation.ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".presentation.ui.MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Login Activity -->
+        <activity
+            android:name=".presentation.ui.auth.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Register Activity -->
+        <activity
+            android:name=".presentation.ui.auth.RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">UAS202404021</string>
+    <string name="app_name">Stokify</string>
+
+    <string-array name="roles_array">
+        <item>Admin</item>
+        <item>Staff</item>
+    </string-array>
 </resources>

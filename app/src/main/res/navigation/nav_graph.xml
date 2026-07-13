@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_dashboard">
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.uas202404021.stokify.presentation.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_inventory"
+        android:name="com.uas202404021.stokify.presentation.ui.inventory.InventoryListFragment"
+        android:label="Katalog"
+        tools:layout="@layout/fragment_inventory_list">
+        
+        <action
+            android:id="@+id/action_navigation_inventory_to_addEditProductFragment"
+            app:destination="@id/addEditProductFragment" />
+            
+        <action
+            android:id="@+id/action_navigation_inventory_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.uas202404021.stokify.presentation.ui.profile.ProfileFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profile" />
+        
+    <fragment
+        android:id="@+id/addEditProductFragment"
+        android:name="com.uas202404021.stokify.presentation.ui.inventory.AddEditProductFragment"
+        android:label="Form Produk"
+        tools:layout="@layout/fragment_add_edit_product">
+        <argument
+            android:name="productId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.uas202404021.stokify.presentation.ui.inventory.ProductDetailFragment"
+        android:label="Detail Produk"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_addEditProductFragment"
+            app:destination="@id/addEditProductFragment" />
+    </fragment>
+</navigation>
