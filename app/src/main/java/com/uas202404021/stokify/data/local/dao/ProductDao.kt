@@ -62,4 +62,8 @@ interface ProductDao {
     // Mendapatkan jumlah barang yang stoknya kritis (di bawah minStock)
     @Query("SELECT COUNT(*) FROM products WHERE stock <= minStock")
     fun getLowStockCount(): Flow<Int>
+
+    // Mendapatkan daftar produk yang stoknya kritis (untuk peringatan dini)
+    @Query("SELECT * FROM products WHERE stock <= minStock ORDER BY stock ASC")
+    fun getLowStockProducts(): Flow<List<ProductEntity>>
 }

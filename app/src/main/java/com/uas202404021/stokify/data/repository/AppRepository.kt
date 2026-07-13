@@ -47,6 +47,12 @@ class AppRepository(
         productDao.deleteProduct(product)
     }
 
+    // Dashboard Statistics
+    fun getProductCount(): Flow<Int> = productDao.getProductCount()
+    fun getLowStockCount(): Flow<Int> = productDao.getLowStockCount()
+    fun getTotalAssetValue(): Flow<Double?> = productDao.getTotalAssetValue()
+    fun getLowStockProducts(): Flow<List<ProductEntity>> = productDao.getLowStockProducts()
+
     // Stock History Operations
     fun getHistoryForProduct(productId: Int): Flow<List<StockHistoryEntity>> {
         return stockHistoryDao.getHistoryForProduct(productId)

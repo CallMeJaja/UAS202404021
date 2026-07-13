@@ -28,6 +28,16 @@ class InventoryViewModel(
     private val _categoryFilter = MutableStateFlow("Semua")
     private val _sortBy = MutableStateFlow("NAME_ASC")
 
+    // Dashboard Statistics
+    val productCount: StateFlow<Int> = repository.getProductCount()
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+    val lowStockCount: StateFlow<Int> = repository.getLowStockCount()
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+    val totalAssetValue: StateFlow<Double?> = repository.getTotalAssetValue()
+        .stateIn(viewModelScope, SharingStarted.Lazily, null)
+    val lowStockProducts: StateFlow<List<ProductEntity>> = repository.getLowStockProducts()
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+
     fun setSearchQuery(query: String) { _searchQuery.value = query }
     fun setCategoryFilter(category: String) { _categoryFilter.value = category }
     fun setSortBy(sort: String) { _sortBy.value = sort }
