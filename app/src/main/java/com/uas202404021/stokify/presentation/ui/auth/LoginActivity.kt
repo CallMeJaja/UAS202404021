@@ -133,8 +133,14 @@ class LoginActivity : AppCompatActivity() {
                     is AuthState.Error -> {
                         binding.progressBar.visibility = View.GONE
                         binding.btnLogin.isEnabled = true
-                        // Tampilkan error di field password (karena username sudah tervalidasi)
-                        binding.tilPassword.error = state.message
+                        
+                        if (state.message.contains("Akun tidak ditemukan", ignoreCase = true) || 
+                            state.message.contains("Username", ignoreCase = true)) {
+                            binding.tilUsername.error = state.message
+                        } else {
+                            binding.tilPassword.error = state.message
+                        }
+                        
                         viewModel.resetState()
                     }
                 }

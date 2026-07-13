@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -42,9 +43,9 @@ class InventoryViewModel(
     fun setCategoryFilter(category: String) { _categoryFilter.value = category }
     fun setSortBy(sort: String) { _sortBy.value = sort }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
+    @OptIn(ExperimentalCoroutinesApi::class, kotlinx.coroutines.FlowPreview::class)
     val productsFlow: StateFlow<List<ProductEntity>> = kotlinx.coroutines.flow.combine(
-        _searchQuery,
+        _searchQuery.debounce(300),
         _categoryFilter,
         _sortBy
     ) { query, category, sort ->

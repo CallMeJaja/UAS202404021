@@ -1,7 +1,5 @@
 package com.uas202404021.stokify.domain.usecase
 
-import android.util.Patterns
-
 class ValidateAuthUseCase {
 
     fun validateUsername(username: String): ValidationResult {

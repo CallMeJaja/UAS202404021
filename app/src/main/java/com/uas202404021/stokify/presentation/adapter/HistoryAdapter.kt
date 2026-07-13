@@ -21,8 +21,8 @@ class HistoryAdapter : ListAdapter<StockHistoryEntity, HistoryAdapter.HistoryVie
 
             // Badge tipe
             binding.tvHistoryType.text = history.type
-            val badgeBg = binding.tvHistoryType.background as GradientDrawable
-            badgeBg.setColor(if (isIncrease) Color.parseColor("#4CAF50") else Color.parseColor("#F44336"))
+            val badgeBg = binding.tvHistoryType.background as? GradientDrawable
+            badgeBg?.setColor(if (isIncrease) Color.parseColor("#4CAF50") else Color.parseColor("#F44336"))
 
             // Teks jumlah
             val prefix = if (isIncrease) "+" else "-"

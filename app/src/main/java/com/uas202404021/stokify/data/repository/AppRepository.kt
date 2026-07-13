@@ -61,14 +61,12 @@ class AppRepository(
     suspend fun updateStockWithHistory(product: ProductEntity, changeAmount: Int, type: String) {
         val newStock = if (type == "IN") product.stock + changeAmount else product.stock - changeAmount
         val updatedProduct = product.copy(stock = newStock)
-        productDao.updateProduct(updatedProduct)
-        productDao.insertStockHistory(
-            StockHistoryEntity(
-                productId = product.id,
-                changeAmount = changeAmount,
-                type = type,
-                timestamp = System.currentTimeMillis()
-            )
+        val history = StockHistoryEntity(
+            productId = product.id,
+            changeAmount = changeAmount,
+            type = type,
+            timestamp = System.currentTimeMillis()
         )
+        productDao.updateStockWithHistory(updatedProduct, history)
     }
 }

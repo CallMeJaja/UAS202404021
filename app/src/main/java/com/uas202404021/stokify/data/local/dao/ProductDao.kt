@@ -30,6 +30,12 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStockHistory(history: StockHistoryEntity): Long
 
+    @Transaction
+    suspend fun updateStockWithHistory(product: ProductEntity, history: StockHistoryEntity) {
+        updateProduct(product)
+        insertStockHistory(history)
+    }
+
     // Mendapatkan satu produk berdasarkan ID untuk halaman detail
     @Query("SELECT * FROM products WHERE id = :productId LIMIT 1")
     fun getProductById(productId: Int): Flow<ProductEntity?>

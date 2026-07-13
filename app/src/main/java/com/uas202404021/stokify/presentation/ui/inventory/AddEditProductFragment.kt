@@ -25,6 +25,7 @@ import com.uas202404021.stokify.databinding.FragmentAddEditProductBinding
 import com.uas202404021.stokify.domain.usecase.ValidateProductUseCase
 import com.uas202404021.stokify.presentation.viewmodel.InventoryViewModel
 import com.uas202404021.stokify.presentation.viewmodel.InventoryViewModelFactory
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
@@ -118,20 +119,19 @@ class AddEditProductFragment : Fragment() {
 
     private fun loadProductData() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getProductById(productId).collect { product ->
-                product?.let {
-                    binding.etSku.setText(it.sku)
-                    binding.etName.setText(it.name)
-                    binding.actCategory.setText(it.category, false)
-                    binding.etStock.setText(it.stock.toString())
-                    binding.etMinStock.setText(it.minStock.toString())
-                    binding.etPrice.setText(it.price.toString())
-                    binding.etLocation.setText(it.location)
+            val product = viewModel.getProductById(productId).first { it != null }
+            product?.let {
+                binding.etSku.setText(it.sku)
+                binding.etName.setText(it.name)
+                binding.actCategory.setText(it.category, false)
+                binding.etStock.setText(it.stock.toString())
+                binding.etMinStock.setText(it.minStock.toString())
+                binding.etPrice.setText(it.price.toString())
+                binding.etLocation.setText(it.location)
 
-                    if (!it.imageUri.isNullOrEmpty()) {
-                        selectedImageUri = Uri.parse(it.imageUri)
-                        binding.ivProductImage.setImageURI(selectedImageUri)
-                    }
+                if (!it.imageUri.isNullOrEmpty()) {
+                    selectedImageUri = Uri.parse(it.imageUri)
+                    binding.ivProductImage.setImageURI(selectedImageUri)
                 }
             }
         }
@@ -234,7 +234,11 @@ class AddEditProductFragment : Fragment() {
             "${requireContext().packageName}.fileprovider",
             photoFile
         )
-        takePictureLauncher.launch(cameraPhotoUri!!)
+        cameraPhotoUri?.let { uri ->
+            takePictureLauncher.launch(uri)
+        } ?: run {
+            Toast.makeText(requireContext(), "Gagal membuat file foto", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun copyImageToInternalStorage(uri: Uri): Uri? {

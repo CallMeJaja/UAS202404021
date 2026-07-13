@@ -39,7 +39,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "stokify_database"
                 )
                     // Memungkinkan penghapusan data secara destruktif jika skema berubah selama pengembangan
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration(dropAllTables = true)
                     .addCallback(AppDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance

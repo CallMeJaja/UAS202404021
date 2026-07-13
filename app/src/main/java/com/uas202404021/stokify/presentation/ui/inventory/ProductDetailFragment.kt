@@ -133,27 +133,33 @@ class ProductDetailFragment : Fragment() {
         binding.tvLocation.text = "Lokasi: ${product.location}"
 
         // Status badge
-        val badgeBackground = binding.tvStockStatus.background as GradientDrawable
+        val badgeBackground = binding.tvStockStatus.background as? GradientDrawable
         when {
             product.stock > product.minStock -> {
                 binding.tvStockStatus.text = "Aman"
-                badgeBackground.setColor(Color.parseColor("#4CAF50"))
+                badgeBackground?.setColor(Color.parseColor("#4CAF50"))
             }
             product.stock > 0 -> {
                 binding.tvStockStatus.text = "Menipis"
-                badgeBackground.setColor(Color.parseColor("#FF9800"))
+                badgeBackground?.setColor(Color.parseColor("#FF9800"))
             }
             else -> {
                 binding.tvStockStatus.text = "Habis"
-                badgeBackground.setColor(Color.parseColor("#F44336"))
+                badgeBackground?.setColor(Color.parseColor("#F44336"))
             }
         }
 
         // Load image
         if (!product.imageUri.isNullOrEmpty()) {
-            val file = File(product.imageUri)
-            if (file.exists()) {
-                binding.ivProductImage.setImageURI(Uri.fromFile(file))
+            val uri = Uri.parse(product.imageUri)
+            val path = uri.path
+            if (path != null) {
+                val file = File(path)
+                if (file.exists()) {
+                    binding.ivProductImage.setImageURI(uri)
+                }
+            } else {
+                binding.ivProductImage.setImageURI(uri) // Coba load langsung sebagai URI fallback
             }
         }
     }
@@ -187,7 +193,7 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun showStockDialog(product: ProductEntity, type: String) {
-        val inputStream = EditText(requireContext()).apply {
+        val amountInput = EditText(requireContext()).apply {
             hint = "Jumlah"
             inputType = android.text.InputType.TYPE_CLASS_NUMBER
             val dp16 = (16 * resources.displayMetrics.density).toInt()
@@ -197,7 +203,7 @@ class ProductDetailFragment : Fragment() {
         val container = LinearLayout(requireContext()).apply {
             val dp16 = (16 * resources.displayMetrics.density).toInt()
             setPadding(dp16, 0, dp16, 0)
-            addView(inputStream)
+            addView(amountInput)
         }
 
         val title = if (type == "IN") "Stok Masuk" else "Stok Keluar"
@@ -206,7 +212,7 @@ class ProductDetailFragment : Fragment() {
             .setTitle(title)
             .setView(container)
             .setPositiveButton("OK") { _, _ ->
-                val amountText = inputStream.text.toString()
+                val amountText = amountInput.text.toString()
                 val amount = amountText.toIntOrNull()
                 if (amount == null || amount <= 0) {
                     Toast.makeText(requireContext(), "Masukkan jumlah yang valid", Toast.LENGTH_SHORT).show()
