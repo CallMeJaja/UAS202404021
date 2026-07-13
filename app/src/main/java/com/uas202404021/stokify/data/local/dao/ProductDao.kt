@@ -26,19 +26,9 @@ interface ProductDao {
     @Delete
     suspend fun deleteProduct(product: ProductEntity)
 
-    // Digunakan oleh transaksi atomik pembaruan stok
+    // Digunakan oleh transaksi atomik pembaruan stok di Repository
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStockHistory(history: StockHistoryEntity): Long
-
-    /**
-     * Transaksi atomik untuk memperbarui stok produk sekaligus mencatat riwayatnya.
-     * Menggunakan anotasi @Transaction untuk menjamin integritas data (keduanya sukses atau gagal bersamaan).
-     */
-    @Transaction
-    suspend fun updateStockWithHistory(product: ProductEntity, history: StockHistoryEntity) {
-        updateProduct(product)
-        insertStockHistory(history)
-    }
 
     // Mendapatkan satu produk berdasarkan ID untuk halaman detail
     @Query("SELECT * FROM products WHERE id = :productId LIMIT 1")
