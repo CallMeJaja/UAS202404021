@@ -81,7 +81,7 @@ class InventoryListFragment : Fragment() {
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCategory.adapter = categoryAdapter
 
-        val sorts = arrayOf("Nama (A-Z)", "Nama (Z-A)", "Harga Terendah", "Harga Tertinggi")
+        val sorts = arrayOf("Nama (A-Z)", "Nama (Z-A)", "Harga Terendah", "Harga Tertinggi", "Stok Terendah", "Stok Tertinggi")
         val sortAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, sorts)
         sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerSort.adapter = sortAdapter
@@ -100,6 +100,8 @@ class InventoryListFragment : Fragment() {
                     1 -> "NAME_DESC"
                     2 -> "PRICE_ASC"
                     3 -> "PRICE_DESC"
+                    4 -> "STOCK_ASC"
+                    5 -> "STOCK_DESC"
                     else -> "NAME_ASC"
                 }
                 viewModel.setSortBy(sortKey)

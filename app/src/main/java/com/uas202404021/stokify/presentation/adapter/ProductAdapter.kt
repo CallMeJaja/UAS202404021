@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.uas202404021.stokify.R
 import com.uas202404021.stokify.data.local.db.ProductEntity
 import com.uas202404021.stokify.databinding.ItemProductBinding
 import java.text.NumberFormat
@@ -46,10 +47,10 @@ class ProductAdapter(
                 try {
                     binding.ivProductImage.setImageURI(Uri.parse(product.imageUri))
                 } catch (e: Exception) {
-                    binding.ivProductImage.setImageResource(android.R.drawable.ic_menu_camera)
+                    binding.ivProductImage.setImageResource(R.drawable.ic_inventory)
                 }
             } else {
-                binding.ivProductImage.setImageResource(android.R.drawable.ic_menu_camera)
+                binding.ivProductImage.setImageResource(R.drawable.ic_inventory)
             }
 
             // Click listener

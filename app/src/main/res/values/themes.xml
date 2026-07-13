@@ -2,7 +2,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Tema Utama Aplikasi -->
     <style name="Base.Theme.UAS202404021" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Anda bisa menyesuaikan warna di sini nanti -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.UAS202404021" parent="Base.Theme.UAS202404021" />

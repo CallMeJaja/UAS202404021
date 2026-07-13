@@ -78,7 +78,7 @@ class DashboardFragment : Fragment() {
     private fun setupWarningRecyclerView() {
         warningAdapter = WarningProductAdapter { product ->
             val bundle = bundleOf("productId" to product.id)
-            findNavController().navigate(R.id.navigation_inventory, bundle)
+            findNavController().navigate(R.id.action_navigation_dashboard_to_productDetailFragment, bundle)
         }
         binding.rvWarningProducts.apply {
             layoutManager = LinearLayoutManager(requireContext())

@@ -43,7 +43,9 @@ interface ProductDao {
             CASE WHEN :sortBy = 'NAME_ASC' THEN name END ASC,
             CASE WHEN :sortBy = 'NAME_DESC' THEN name END DESC,
             CASE WHEN :sortBy = 'PRICE_ASC' THEN price END ASC,
-            CASE WHEN :sortBy = 'PRICE_DESC' THEN price END DESC
+            CASE WHEN :sortBy = 'PRICE_DESC' THEN price END DESC,
+            CASE WHEN :sortBy = 'STOCK_ASC' THEN stock END ASC,
+            CASE WHEN :sortBy = 'STOCK_DESC' THEN stock END DESC
     """)
     fun getProducts(
         searchQuery: String,

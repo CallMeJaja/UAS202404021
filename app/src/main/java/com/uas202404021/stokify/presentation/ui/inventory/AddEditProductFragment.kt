@@ -1,5 +1,7 @@
 package com.uas202404021.stokify.presentation.ui.inventory
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +10,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -33,6 +38,7 @@ class AddEditProductFragment : Fragment() {
 
     private var productId: Int = -1
     private var selectedImageUri: Uri? = null
+    private var cameraPhotoUri: Uri? = null
 
     private val viewModel: InventoryViewModel by viewModels {
         val database = AppDatabase.getDatabase(requireContext(), lifecycleScope)
@@ -42,11 +48,29 @@ class AddEditProductFragment : Fragment() {
 
     private val validateUseCase = ValidateProductUseCase()
 
+    // Launcher untuk galeri
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             val internalUri = copyImageToInternalStorage(it)
             selectedImageUri = internalUri
             binding.ivProductImage.setImageURI(internalUri)
+        }
+    }
+
+    // Launcher untuk kamera
+    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->
+        if (success && cameraPhotoUri != null) {
+            selectedImageUri = cameraPhotoUri
+            binding.ivProductImage.setImageURI(cameraPhotoUri)
+        }
+    }
+
+    // Launcher untuk permission kamera
+    private val requestCameraPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) {
+            launchCamera()
+        } else {
+            Toast.makeText(requireContext(), "Izin kamera ditolak", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -84,7 +108,7 @@ class AddEditProductFragment : Fragment() {
 
     private fun setupListeners() {
         binding.cvImagePicker.setOnClickListener {
-            pickImageLauncher.launch("image/*")
+            showImagePickerDialog()
         }
 
         binding.btnSave.setOnClickListener {
@@ -122,17 +146,42 @@ class AddEditProductFragment : Fragment() {
         val priceText = binding.etPrice.text.toString().trim()
         val location = binding.etLocation.text.toString().trim()
 
-        if (!validateUseCase.validateSku(sku).successful ||
-            !validateUseCase.validateName(name).successful ||
-            !validateUseCase.validateCategory(category).successful ||
-            (!validateUseCase.validateStock(stockText).successful && productId == -1) ||
-            !validateUseCase.validateMinStock(minStockText).successful ||
-            !validateUseCase.validatePrice(priceText).successful ||
-            !validateUseCase.validateLocation(location).successful
-        ) {
-            Toast.makeText(requireContext(), "Harap periksa kembali semua inputan", Toast.LENGTH_SHORT).show()
-            return
+        // Clear errors
+        binding.tilSku.error = null
+        binding.tilName.error = null
+        binding.tilCategory.error = null
+        binding.tilStock.error = null
+        binding.tilMinStock.error = null
+        binding.tilPrice.error = null
+        binding.tilLocation.error = null
+
+        // Inline validation per field
+        var hasError = false
+
+        val skuResult = validateUseCase.validateSku(sku)
+        if (!skuResult.successful) { binding.tilSku.error = skuResult.errorMessage; hasError = true }
+
+        val nameResult = validateUseCase.validateName(name)
+        if (!nameResult.successful) { binding.tilName.error = nameResult.errorMessage; hasError = true }
+
+        val categoryResult = validateUseCase.validateCategory(category)
+        if (!categoryResult.successful) { binding.tilCategory.error = categoryResult.errorMessage; hasError = true }
+
+        if (productId == -1) {
+            val stockResult = validateUseCase.validateStock(stockText)
+            if (!stockResult.successful) { binding.tilStock.error = stockResult.errorMessage; hasError = true }
         }
+
+        val minStockResult = validateUseCase.validateMinStock(minStockText)
+        if (!minStockResult.successful) { binding.tilMinStock.error = minStockResult.errorMessage; hasError = true }
+
+        val priceResult = validateUseCase.validatePrice(priceText)
+        if (!priceResult.successful) { binding.tilPrice.error = priceResult.errorMessage; hasError = true }
+
+        val locationResult = validateUseCase.validateLocation(location)
+        if (!locationResult.successful) { binding.tilLocation.error = locationResult.errorMessage; hasError = true }
+
+        if (hasError) return
 
         val product = ProductEntity(
             id = if (productId == -1) 0 else productId,
@@ -155,6 +204,37 @@ class AddEditProductFragment : Fragment() {
         }
 
         findNavController().popBackStack()
+    }
+
+    private fun showImagePickerDialog() {
+        val options = arrayOf("Ambil Foto", "Pilih dari Galeri")
+        AlertDialog.Builder(requireContext())
+            .setTitle("Pilih Gambar")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> checkCameraPermissionAndLaunch()
+                    1 -> pickImageLauncher.launch("image/*")
+                }
+            }
+            .show()
+    }
+
+    private fun checkCameraPermissionAndLaunch() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            launchCamera()
+        } else {
+            requestCameraPermission.launch(Manifest.permission.CAMERA)
+        }
+    }
+
+    private fun launchCamera() {
+        val photoFile = File(requireContext().filesDir, "${UUID.randomUUID()}.jpg")
+        cameraPhotoUri = FileProvider.getUriForFile(
+            requireContext(),
+            "${requireContext().packageName}.fileprovider",
+            photoFile
+        )
+        takePictureLauncher.launch(cameraPhotoUri!!)
     }
 
     private fun copyImageToInternalStorage(uri: Uri): Uri? {

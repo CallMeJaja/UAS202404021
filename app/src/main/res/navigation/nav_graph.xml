@@ -9,7 +9,12 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.uas202404021.stokify.presentation.ui.dashboard.DashboardFragment"
         android:label="Dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+
+        <action
+            android:id="@+id/action_navigation_dashboard_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_inventory"
