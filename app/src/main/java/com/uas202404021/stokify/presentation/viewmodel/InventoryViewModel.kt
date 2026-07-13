@@ -15,6 +15,11 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+sealed class InventoryResult {
+    data class Success(val message: String) : InventoryResult()
+    data class Error(val message: String) : InventoryResult()
+}
+
 class InventoryViewModel(
     private val repository: AppRepository
 ) : ViewModel() {
@@ -53,6 +58,39 @@ class InventoryViewModel(
     fun deleteProduct(product: ProductEntity) = viewModelScope.launch {
         repository.deleteProduct(product)
     }
+
+    // Stock History
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun getHistoryForProduct(productId: Int): StateFlow<List<StockHistoryEntity>> {
+        return repository.getHistoryForProduct(productId)
+            .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+    }
+
+    // Quick Stock Update
+    private val _stockUpdateResult = MutableStateFlow<InventoryResult?>(null)
+    val stockUpdateResult: StateFlow<InventoryResult?> = _stockUpdateResult.asStateFlow()
+
+    fun quickStockUpdate(product: ProductEntity, changeAmount: Int, type: String) {
+        viewModelScope.launch {
+            try {
+                if (changeAmount <= 0) {
+                    _stockUpdateResult.value = InventoryResult.Error("Jumlah harus lebih dari 0")
+                    return@launch
+                }
+                val newStock = if (type == "IN") product.stock + changeAmount else product.stock - changeAmount
+                if (newStock < 0) {
+                    _stockUpdateResult.value = InventoryResult.Error("Stok tidak boleh negatif (sisa: ${product.stock})")
+                    return@launch
+                }
+                repository.updateStockWithHistory(product, changeAmount, type)
+                _stockUpdateResult.value = InventoryResult.Success("Stok berhasil diperbarui")
+            } catch (e: Exception) {
+                _stockUpdateResult.value = InventoryResult.Error("Gagal memperbarui stok: ${e.message}")
+            }
+        }
+    }
+
+    fun clearStockUpdateResult() { _stockUpdateResult.value = null }
 }
 
 class InventoryViewModelFactory(private val repository: AppRepository) : ViewModelProvider.Factory {
