@@ -1,7 +1,7 @@
 package com.uas202404021.stokify.presentation.ui
 
 import android.os.Bundle
-import android.view.Menu
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Handle window insets untuk NavHostFragment (agar konten tidak nabrak status bar)
+        // Handle window insets untuk NavHostFragment
         ViewCompat.setOnApplyWindowInsetsListener(binding.navHostFragment) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             view.updatePadding(top = systemBars.top)
@@ -53,6 +53,19 @@ class MainActivity : AppCompatActivity() {
         // Sembunyikan tab Laporan untuk Staff
         if (!isAdmin) {
             binding.bottomNavView.menu.findItem(R.id.navigation_report)?.isVisible = false
+        }
+
+        // Sembunyikan Bottom Nav di halaman detail
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.productDetailFragment,
+                R.id.addEditProductFragment -> {
+                    binding.bottomNavView.visibility = View.GONE
+                }
+                else -> {
+                    binding.bottomNavView.visibility = View.VISIBLE
+                }
+            }
         }
     }
 }

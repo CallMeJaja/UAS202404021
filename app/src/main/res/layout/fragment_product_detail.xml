@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:text="Nama Produk"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -150,7 +150,7 @@
                             android:gravity="center"
                             android:text="15"
                             android:textColor="?attr/colorOnSurface"
-                            android:textSize="32sp"
+                            android:textSize="28sp"
                             android:textStyle="bold" />
 
                         <!-- Tombol Tambah -->
