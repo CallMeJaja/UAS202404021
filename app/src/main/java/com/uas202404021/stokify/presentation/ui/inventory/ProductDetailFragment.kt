@@ -10,12 +10,14 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
 import com.uas202404021.stokify.R
 import com.uas202404021.stokify.data.local.db.AppDatabase
 import com.uas202404021.stokify.data.local.db.ProductEntity
@@ -225,16 +227,25 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun showDeleteConfirmation(product: ProductEntity) {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Hapus Produk")
-            .setMessage("Yakin ingin menghapus \"${product.name}\"? Semua riwayat stok juga akan terhapus.")
-            .setPositiveButton("Hapus") { _, _ ->
-                viewModel.deleteProduct(product)
-                Toast.makeText(requireContext(), "Produk dihapus", Toast.LENGTH_SHORT).show()
-                findNavController().popBackStack()
-            }
-            .setNegativeButton("Batal", null)
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_delete_confirmation, null)
+        val tvMessage = dialogView.findViewById<TextView>(R.id.tvDeleteMessage)
+        tvMessage.text = getString(R.string.dialog_confirm_delete_message, product.name)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(false)
             .show()
+
+        dialogView.findViewById<MaterialButton>(R.id.btnCancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogView.findViewById<MaterialButton>(R.id.btnDelete).setOnClickListener {
+            viewModel.deleteProduct(product)
+            Toast.makeText(requireContext(), getString(R.string.success_product_deleted), Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {

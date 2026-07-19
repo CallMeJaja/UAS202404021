@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.google.android.material.button.MaterialButton
+import com.uas202404021.stokify.R
 import com.uas202404021.stokify.data.local.pref.SessionManager
 import com.uas202404021.stokify.databinding.FragmentProfileBinding
 import com.uas202404021.stokify.presentation.ui.auth.LoginActivity
@@ -58,14 +60,21 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showLogoutConfirmation() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Keluar")
-            .setMessage("Yakin ingin keluar dari akun ini?")
-            .setPositiveButton("Keluar") { _, _ ->
-                performLogout()
-            }
-            .setNegativeButton("Batal", null)
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_logout_confirmation, null)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(false)
             .show()
+
+        dialogView.findViewById<MaterialButton>(R.id.btnCancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogView.findViewById<MaterialButton>(R.id.btnLogout).setOnClickListener {
+            dialog.dismiss()
+            performLogout()
+        }
     }
 
     private fun performLogout() {
