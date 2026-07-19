@@ -35,11 +35,11 @@
     <string name="dashboard_greeting">Halo, %s!</string>
     <string name="dashboard_total_products">Total Produk</string>
     <string name="dashboard_variants">varian terdaftar</string>
-    <string name="dashboard_low_stock">Stok Kritis</string>
+    <string name="dashboard_low_stock">Stok Menipis</string>
     <string name="dashboard_need_attention">perlu perhatian</string>
     <string name="dashboard_total_asset">Total Nilai Aset</string>
     <string name="dashboard_all_inventory">Seluruh inventaris</string>
-    <string name="dashboard_stock_warning">Peringatan Stok Kritis</string>
+    <string name="dashboard_stock_warning">Peringatan Stok Menipis</string>
     <string name="dashboard_stock_warning_desc">Produk yang stoknya di bawah batas minimum</string>
     <string name="dashboard_stock_safe">Semua stok dalam kondisi aman</string>
 
@@ -108,7 +108,7 @@
     <string name="report_summary">Ringkasan</string>
     <string name="report_total_products">Total Produk</string>
     <string name="report_total_stock">Total Stok</string>
-    <string name="report_critical_stock">Stok Kritis</string>
+    <string name="report_critical_stock">Stok Menipis</string>
     <string name="report_total_asset">Total Aset</string>
     <string name="report_stock_status">Status Stok</string>
     <string name="report_by_category">Produk per Kategori</string>

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView 
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="?attr/colorSurface">
+    android:background="?attr/colorSurface"
+    android:importantForAutofill="no"
+    tools:context=".presentation.ui.inventory.AddEditProductFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,10 +16,8 @@
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
         android:paddingTop="24dp"
-        android:paddingBottom="32dp"
-        tools:context=".presentation.ui.inventory.AddEditProductFragment">
+        android:paddingBottom="32dp">
 
-        <!-- Title -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
@@ -27,7 +27,6 @@
             android:textColor="?attr/colorOnSurface"
             android:textStyle="bold" />
 
-        <!-- Image Picker Area -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvImagePicker"
             android:layout_width="120dp"
@@ -59,7 +58,6 @@
             android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="12sp" />
 
-        <!-- SKU Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilSku"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -76,10 +74,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapCharacters"
-                android:imeOptions="actionNext" />
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Name Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -96,10 +94,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:imeOptions="actionNext" />
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Category Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilCategory"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -115,10 +113,10 @@
                 android:id="@+id/actCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
+                android:inputType="none"
+                android:importantForAutofill="no" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Stock Fields -->
         <LinearLayout
             android:id="@+id/llStock"
             android:layout_width="match_parent"
@@ -143,7 +141,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:imeOptions="actionNext" />
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -163,11 +162,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:imeOptions="actionNext" />
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <!-- Price Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPrice"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -184,10 +183,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:imeOptions="actionNext" />
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Location Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilLocation"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -204,10 +203,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:imeOptions="actionDone" />
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Save Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             style="@style/Widget.Material3.Button"
@@ -219,4 +218,4 @@
             app:cornerRadius="12dp" />
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
