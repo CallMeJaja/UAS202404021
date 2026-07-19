@@ -1,8 +1,132 @@
 <resources>
     <string name="app_name">Stokify</string>
 
+    <!-- Auth -->
+    <string name="login_title">Masuk</string>
+    <string name="login_subtitle">Silakan masuk untuk mengelola inventaris</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Kata Sandi</string>
+    <string name="login_button">Masuk</string>
+    <string name="login_register_link">Belum punya akun? Daftar di sini</string>
+    <string name="login_success">Login berhasil</string>
+    <string name="login_failed">Username atau kata sandi salah</string>
+    <string name="login_error">Terjadi kesalahan saat login</string>
+
+    <string name="register_title">Daftar</string>
+    <string name="register_subtitle">Buat akun baru untuk mulai menggunakan Stokify</string>
+    <string name="register_fullname">Nama Lengkap</string>
+    <string name="register_username">Username</string>
+    <string name="register_password">Kata Sandi</string>
+    <string name="register_confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="register_role">Role</string>
+    <string name="register_button">Daftar</string>
+    <string name="register_login_link">Sudah punya akun? Masuk di sini</string>
+    <string name="register_success">Registrasi berhasil</string>
+    <string name="register_failed">Username sudah digunakan</string>
+    <string name="register_password_mismatch">Kata sandi tidak cocok</string>
+
+    <!-- Roles -->
     <string-array name="roles_array">
         <item>Admin</item>
         <item>Staff</item>
     </string-array>
+
+    <!-- Dashboard -->
+    <string name="dashboard_greeting">Halo, %s!</string>
+    <string name="dashboard_total_products">Total Produk</string>
+    <string name="dashboard_variants">varian terdaftar</string>
+    <string name="dashboard_low_stock">Stok Kritis</string>
+    <string name="dashboard_need_attention">perlu perhatian</string>
+    <string name="dashboard_total_asset">Total Nilai Aset</string>
+    <string name="dashboard_all_inventory">Seluruh inventaris</string>
+    <string name="dashboard_stock_warning">Peringatan Stok Kritis</string>
+    <string name="dashboard_stock_warning_desc">Produk yang stoknya di bawah batas minimum</string>
+    <string name="dashboard_stock_safe">Semua stok dalam kondisi aman</string>
+
+    <!-- Inventory -->
+    <string name="search_hint">Cari Produk atau SKU...</string>
+    <string name="filter_category">Kategori</string>
+    <string name="filter_sort">Urutkan</string>
+    <string name="add_product">Tambah Produk</string>
+    <string name="edit_product">Edit Produk</string>
+    <string name="delete_product">Hapus Produk</string>
+
+    <!-- Empty States -->
+    <string name="empty_catalog_title">Belum Ada Produk</string>
+    <string name="empty_catalog_desc">Produk yang ditambahkan akan muncul di sini. Mulai tambahkan produk pertama Anda!</string>
+    <string name="empty_search_title">Hasil Pencarian Kosong</string>
+    <string name="empty_search_desc">Tidak ditemukan produk dengan kata kunci \"%s\". Coba kata kunci lain atau hapus filter.</string>
+    <string name="empty_search_button">Hapus Pencarian</string>
+    <string name="empty_history_title">Belum ada riwayat stok</string>
+    <string name="empty_history_desc">Riwayat perubahan stok akan muncul di sini.</string>
+
+    <!-- Product Detail -->
+    <string name="stock_current">Stok Saat Ini</string>
+    <string name="stock_min">Min. Stok: %d</string>
+    <string name="stock_location">Lokasi: %s</string>
+    <string name="stock_history">Riwayat Stok</string>
+    <string name="stock_in">Masuk</string>
+    <string name="stock_out">Keluar</string>
+    <string name="stock_safe">Aman</string>
+    <string name="stock_low">Menipis</string>
+    <string name="stock_empty">Habis</string>
+    <string name="stock_update_success">Stok berhasil diperbarui</string>
+    <string name="stock_update_failed">Gagal memperbarui stok</string>
+
+    <!-- Success States -->
+    <string name="success_product_added">Produk Berhasil Ditambahkan!</string>
+    <string name="success_product_updated">Produk Berhasil Diperbarui!</string>
+    <string name="success_product_deleted">Produk Berhasil Dihapus!</string>
+    <string name="success_message">Perubahan telah berhasil disimpan.</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_confirm_delete_title">Hapus Produk?</string>
+    <string name="dialog_confirm_delete_message">Anda yakin ingin menghapus produk \"%s\"? Semua riwayat stok juga akan dihapus. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="dialog_confirm_logout_title">Keluar Akun?</string>
+    <string name="dialog_confirm_logout_message">Anda akan keluar dari akun Anda. Pastikan semua pekerjaan sudah tersimpan. Anda harus login ulang untuk mengakses aplikasi lagi.</string>
+    <string name="dialog_cancel">Batal</string>
+    <string name="dialog_confirm">Konfirmasi</string>
+    <string name="dialog_delete">Hapus</string>
+    <string name="dialog_logout">Keluar</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profil</string>
+    <string name="profile_about">Tentang Aplikasi</string>
+    <string name="profile_version">Versi 1.0</string>
+    <string name="profile_description">Dibuat untuk UAS Android 2024</string>
+    <string name="profile_logout">Keluar</string>
+
+    <!-- Report -->
+    <string name="report_title">Laporan Inventaris</string>
+    <string name="report_date">Tanggal: %s</string>
+    <string name="report_summary">Ringkasan</string>
+    <string name="report_total_products">Total Produk</string>
+    <string name="report_total_stock">Total Stok</string>
+    <string name="report_critical_stock">Stok Kritis</string>
+    <string name="report_total_asset">Total Aset</string>
+    <string name="report_stock_status">Status Stok</string>
+    <string name="report_by_category">Produk per Kategori</string>
+    <string name="report_top_low">Top 5 Stok Terendah</string>
+    <string name="export_pdf">Export PDF</string>
+    <string name="export_csv">Export CSV</string>
+    <string name="export_success">Export berhasil!</string>
+    <string name="export_failed">Export gagal</string>
+    <string name="share_report">Bagikan Laporan</string>
+
+    <!-- Validation -->
+    <string name="validation_required">Field ini wajib diisi</string>
+    <string name="validation_min_length">Minimal %d karakter</string>
+    <string name="validation_password_length">Password minimal 6 karakter</string>
+    <string name="validation_sku_exists">SKU sudah digunakan</string>
+    <string name="validation_invalid_number">Masukkan angka yang valid</string>
+    <string name="validation_price_required">Harga harus lebih dari 0</string>
+    <string name="validation_stock_required">Stok harus lebih dari atau sama dengan 0</string>
+
+    <!-- General -->
+    <string name="loading">Memuat...</string>
+    <string name="error">Terjadi kesalahan</string>
+    <string name="success">Berhasil</string>
+    <string name="ok">OK</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
 </resources>
