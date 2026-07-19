@@ -208,7 +208,7 @@ Menyimpan riwayat perubahan stok.
   <tr>
     <td align="center"><b>Dashboard Admin</b></td>
     <td align="center"><b>Dashboard Staff</b></td>
-    <td align="center"><b>Katalog Produk</b></td>
+    <td align="center"><b>Katalog Admin</b></td>
   </tr>
   <tr>
     <td><img src="screenshots/dashboard_admin.jpg" width="200"></td>
@@ -216,24 +216,44 @@ Menyimpan riwayat perubahan stok.
     <td><img src="screenshots/katalog.jpg" width="200"></td>
   </tr>
   <tr>
-    <td align="center"><b>Detail Produk</b></td>
+    <td align="center"><b>Katalog Staff</b></td>
+    <td align="center"><b>Detail Produk (Habis)</b></td>
+    <td align="center"><b>Detail Produk (Menipis)</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/katalog_staff.jpg" width="200"></td>
+    <td><img src="screenshots/detail.jpg" width="200"></td>
+    <td><img src="screenshots/detail_menipis.jpg" width="200"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Detail Produk (Staff)</b></td>
     <td align="center"><b>Tambah Produk</b></td>
     <td align="center"><b>Laporan</b></td>
   </tr>
   <tr>
-    <td><img src="screenshots/detail.jpg" width="200"></td>
+    <td><img src="screenshots/detail_staff.jpg" width="200"></td>
     <td><img src="screenshots/form.jpg" width="200"></td>
     <td><img src="screenshots/report.jpg" width="200"></td>
   </tr>
   <tr>
+    <td align="center"><b>Export PDF</b></td>
+    <td align="center"><b>Export CSV</b></td>
     <td align="center"><b>Profil</b></td>
-    <td></td>
-    <td></td>
   </tr>
   <tr>
+    <td><img src="screenshots/export_pdf.jpg" width="200"></td>
+    <td><img src="screenshots/export_csv.jpg" width="200"></td>
     <td><img src="screenshots/profile.jpg" width="200"></td>
-    <td></td>
-    <td></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Dialog Hapus</b></td>
+    <td align="center"><b>Dialog Logout</b></td>
+    <td align="center"><b>Empty State</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/dialog_hapus.jpg" width="200"></td>
+    <td><img src="screenshots/dialog_logout.jpg" width="200"></td>
+    <td><img src="screenshots/empty_state.jpg" width="200"></td>
   </tr>
 </table>
 
