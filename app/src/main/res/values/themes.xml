@@ -34,26 +34,13 @@
 
         <!-- Surface Colors -->
         <item name="colorSurface">@color/surface</item>
-        <item name="colorSurfaceDim">@color/surface_dim</item>
-        <item name="colorSurfaceBright">@color/surface_bright</item>
-        <item name="colorSurfaceContainerLowest">@color/surface_container_lowest</item>
-        <item name="colorSurfaceContainerLow">@color/surface_container_low</item>
-        <item name="colorSurfaceContainer">@color/surface_container</item>
-        <item name="colorSurfaceContainerHigh">@color/surface_container_high</item>
-        <item name="colorSurfaceContainerHighest">@color/surface_container_highest</item>
         <item name="colorOnSurface">@color/on_surface</item>
         <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
         <item name="colorSurfaceVariant">@color/surface_variant</item>
-        <item name="colorSurfaceTint">@color/surface_tint</item>
 
         <!-- Outline Colors -->
         <item name="colorOutline">@color/outline</item>
         <item name="colorOutlineVariant">@color/outline_variant</item>
-
-        <!-- Inverse Colors -->
-        <item name="colorSurfaceInverse">@color/inverse_surface</item>
-        <item name="colorOnSurfaceInverse">@color/inverse_on_surface</item>
-        <item name="colorPrimaryInverse">@color/inverse_primary</item>
 
         <!-- Background -->
         <item name="android:colorBackground">@color/background</item>
