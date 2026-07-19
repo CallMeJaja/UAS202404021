@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     tools:context=".presentation.ui.inventory.InventoryListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,9 +20,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:hint="Cari Produk atau SKU..."
+            android:hint="@string/search_hint"
             app:endIconDrawable="@drawable/ic_search"
             app:endIconMode="custom"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -53,7 +58,7 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_status_badge"
-                android:backgroundTint="#F0F0F0" />
+                android:backgroundTint="?attr/colorSurfaceContainer" />
 
             <!-- Sorting -->
             <Spinner
@@ -63,7 +68,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/bg_status_badge"
-                android:backgroundTint="#F0F0F0" />
+                android:backgroundTint="?attr/colorSurfaceContainer" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -79,12 +84,21 @@
             app:layout_constraintTop_toBottomOf="@id/llFilters"
             tools:listitem="@layout/item_product" />
 
-        <TextView
-            android:id="@+id/tvEmptyState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Produk tidak ditemukan"
-            android:visibility="gone"
+        <include
+            android:id="@+id/layoutEmptyCatalog"
+            layout="@layout/layout_empty_catalog"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llFilters" />
+
+        <include
+            android:id="@+id/layoutEmptySearch"
+            layout="@layout/layout_empty_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +114,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="24dp"
         android:src="@drawable/ic_add"
-        app:tint="@android:color/white" />
+        app:backgroundTint="?attr/colorPrimary"
+        app:tint="?attr/colorOnPrimary" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

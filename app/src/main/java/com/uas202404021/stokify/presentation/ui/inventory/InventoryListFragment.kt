@@ -123,19 +123,24 @@ class InventoryListFragment : Fragment() {
             val bundle = Bundle().apply { putInt("productId", -1) }
             findNavController().navigate(R.id.action_navigation_inventory_to_addEditProductFragment, bundle)
         }
+
+        binding.layoutEmptySearch.btnClearSearch.setOnClickListener {
+            binding.etSearch.text?.clear()
+        }
     }
 
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productsFlow.collect { products ->
                 productAdapter.submitList(products)
-                if (products.isEmpty()) {
-                    binding.tvEmptyState.visibility = View.VISIBLE
-                    binding.rvProducts.visibility = View.GONE
-                } else {
-                    binding.tvEmptyState.visibility = View.GONE
-                    binding.rvProducts.visibility = View.VISIBLE
-                }
+                
+                val searchQuery = binding.etSearch.text.toString()
+                val isSearchEmpty = searchQuery.isNotEmpty() && products.isEmpty()
+                val isCatalogEmpty = searchQuery.isEmpty() && products.isEmpty()
+
+                binding.layoutEmptySearch.root.visibility = if (isSearchEmpty) View.VISIBLE else View.GONE
+                binding.layoutEmptyCatalog.root.visibility = if (isCatalogEmpty) View.VISIBLE else View.GONE
+                binding.rvProducts.visibility = if (products.isEmpty()) View.GONE else View.VISIBLE
             }
         }
     }
