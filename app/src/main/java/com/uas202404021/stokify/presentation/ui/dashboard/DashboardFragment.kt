@@ -91,6 +91,26 @@ class DashboardFragment : Fragment() {
     private fun observeDashboardData() {
         val formatRupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
+        // Stock status counts
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.emptyStockCount.collect { count ->
+                binding.tvEmptyStockCount.text = count.toString()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.menipisStockCount.collect { count ->
+                binding.tvMenipisStockCount.text = count.toString()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.safeStockCount.collect { count ->
+                binding.tvSafeStockCount.text = count.toString()
+            }
+        }
+
+        // Product and category counts
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productCount.collect { count ->
                 binding.tvProductCount.text = count.toString()
@@ -98,17 +118,19 @@ class DashboardFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.lowStockCount.collect { count ->
-                binding.tvLowStockCount.text = count.toString()
+            viewModel.categoryCount.collect { count ->
+                binding.tvCategoryCount.text = count.toString()
             }
         }
 
+        // Total asset (Admin only)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.totalAssetValue.collect { value ->
                 binding.tvTotalAsset.text = formatRupiah.format(value ?: 0.0)
             }
         }
 
+        // Warning products (Habis + Menipis)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.lowStockProducts.collect { products ->
                 warningAdapter.submitList(products)

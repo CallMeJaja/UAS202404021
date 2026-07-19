@@ -160,7 +160,7 @@ object PdfGenerator {
         val summaryItems = listOf(
             Triple("Total Produk", products.size.toString(), Color.parseColor("#2E7D32")),
             Triple("Total Stok", totalStock.toString(), Color.parseColor("#1565C0")),
-            Triple("Stok Kritis", "${criticalCount + emptyCount}", Color.parseColor("#E65100")),
+            Triple("Stok Habis", "${criticalCount + emptyCount}", Color.parseColor("#E65100")),
             Triple("Total Aset", formatRupiah.format(totalAsset).removePrefix("Rp"), Color.parseColor("#6A1B9A"))
         )
 

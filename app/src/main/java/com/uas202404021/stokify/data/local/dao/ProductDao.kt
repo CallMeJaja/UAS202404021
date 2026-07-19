@@ -67,11 +67,32 @@ interface ProductDao {
     @Query("SELECT COUNT(*) FROM products")
     fun getProductCount(): Flow<Int>
 
-    // Mendapatkan jumlah barang yang stoknya kritis (di bawah minStock)
+    // Mendapatkan jumlah barang yang stoknya menipis (habis atau di bawah minStock)
     @Query("SELECT COUNT(*) FROM products WHERE stock <= minStock")
     fun getLowStockCount(): Flow<Int>
 
-    // Mendapatkan daftar produk yang stoknya kritis (untuk peringatan dini)
+    // Mendapatkan daftar produk yang stoknya menipis (untuk peringatan dini)
     @Query("SELECT * FROM products WHERE stock <= minStock ORDER BY stock ASC")
     fun getLowStockProducts(): Flow<List<ProductEntity>>
+
+    // === Dashboard Statistics ===
+    // Jumlah produk stok habis (stock = 0)
+    @Query("SELECT COUNT(*) FROM products WHERE stock = 0")
+    fun getEmptyStockCount(): Flow<Int>
+
+    // Jumlah produk stok menipis (0 < stock <= minStock)
+    @Query("SELECT COUNT(*) FROM products WHERE stock > 0 AND stock <= minStock")
+    fun getMenipisStockCount(): Flow<Int>
+
+    // Jumlah produk stok aman (stock > minStock)
+    @Query("SELECT COUNT(*) FROM products WHERE stock > minStock")
+    fun getSafeStockCount(): Flow<Int>
+
+    // Daftar produk stok habis (untuk peringatan)
+    @Query("SELECT * FROM products WHERE stock = 0 ORDER BY name ASC")
+    fun getEmptyStockProducts(): Flow<List<ProductEntity>>
+
+    // Jumlah kategori unik
+    @Query("SELECT COUNT(DISTINCT category) FROM products")
+    fun getCategoryCount(): Flow<Int>
 }

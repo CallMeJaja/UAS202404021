@@ -39,6 +39,18 @@ class InventoryViewModel(
     val lowStockProducts: StateFlow<List<ProductEntity>> = repository.getLowStockProducts()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
+    // New Dashboard Statistics
+    val emptyStockCount: StateFlow<Int> = repository.getEmptyStockCount()
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+    val menipisStockCount: StateFlow<Int> = repository.getMenipisStockCount()
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+    val safeStockCount: StateFlow<Int> = repository.getSafeStockCount()
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+    val emptyStockProducts: StateFlow<List<ProductEntity>> = repository.getEmptyStockProducts()
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+    val categoryCount: StateFlow<Int> = repository.getCategoryCount()
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+
     fun setSearchQuery(query: String) { _searchQuery.value = query }
     fun setCategoryFilter(category: String) { _categoryFilter.value = category }
     fun setSortBy(sort: String) { _sortBy.value = sort }
