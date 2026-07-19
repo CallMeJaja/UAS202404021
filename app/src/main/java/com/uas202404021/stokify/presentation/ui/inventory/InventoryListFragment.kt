@@ -76,7 +76,7 @@ class InventoryListFragment : Fragment() {
     }
 
     private fun setupFilters() {
-        val categories = arrayOf("Semua", "Elektronik", "Pakaian", "Makanan/Minuman", "Aksesoris", "Lainnya")
+        val categories = arrayOf("Semua", "Sembako", "Makanan", "Minuman", "Perawatan", "Rumah Tangga")
         val categoryAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCategory.adapter = categoryAdapter

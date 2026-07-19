@@ -1,6 +1,7 @@
 package com.uas202404021.stokify.presentation.adapter
 
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -30,17 +31,17 @@ class ProductAdapter(
 
             // Mengatur Status Stok dan Warna
             binding.tvStockStatus.text = "Stok: ${product.stock}"
-            val badgeBackground = binding.tvStockStatus.background
-            if (product.stock > product.minStock) {
-                // Aman (Hijau)
-                badgeBackground.setTint(Color.parseColor("#4CAF50"))
-            } else if (product.stock > 0 && product.stock <= product.minStock) {
-                // Menipis (Kuning/Oranye)
-                badgeBackground.setTint(Color.parseColor("#FF9800"))
-            } else {
-                // Habis (Merah)
-                badgeBackground.setTint(Color.parseColor("#F44336"))
+            val badgeColor = when {
+                product.stock > product.minStock -> Color.parseColor("#4CAF50")
+                product.stock > 0 -> Color.parseColor("#FF9800")
+                else -> Color.parseColor("#F44336")
             }
+            val badgeDrawable = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = 16f * binding.root.resources.displayMetrics.density
+                setColor(badgeColor)
+            }
+            binding.tvStockStatus.background = badgeDrawable
 
             // Memuat gambar (jika ada)
             if (!product.imageUri.isNullOrEmpty()) {

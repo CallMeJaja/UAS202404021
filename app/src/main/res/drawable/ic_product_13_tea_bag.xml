@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Tea box -->
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M30,35L90,35L90,95C90,98 87,100 83,100L37,100C33,100 30,98 30,95Z" />
+    <!-- Box lid -->
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M28,30L92,30L92,38L28,38Z" />
+    <!-- Tea label -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M35,45L85,45L85,80L35,80Z" />
+    <!-- Tea bags icon -->
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M50,52L60,52L60,65L50,65Z" />
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M65,52L75,52L75,65L65,65Z" />
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M50,70L60,70L60,73L50,73Z"
+        android:strokeColor="#1565C0"
+        android:strokeWidth="1" />
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M65,70L75,70L75,73L65,73Z"
+        android:strokeColor="#1565C0"
+        android:strokeWidth="1" />
+</vector>

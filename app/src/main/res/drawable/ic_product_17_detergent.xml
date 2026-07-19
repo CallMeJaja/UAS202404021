@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#F3E5F5"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Detergent box -->
+    <path
+        android:fillColor="#6A1B9A"
+        android:pathData="M30,30L90,30L90,95C90,98 87,100 83,100L37,100C33,100 30,98 30,95Z" />
+    <!-- Box handle -->
+    <path
+        android:fillColor="#4A148C"
+        android:pathData="M45,25L75,25L75,32L45,32Z" />
+    <path
+        android:fillColor="#F3E5F5"
+        android:pathData="M52,25L68,25L68,32L52,32Z" />
+    <!-- Label -->
+    <path
+        android:fillColor="#CE93D8"
+        android:pathData="M35,42L85,42L85,75L35,75Z" />
+    <!-- Bubble icon -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M50,50C50,50 58,42 65,50C72,58 58,66 50,50Z"
+        android:strokeColor="#6A1B9A"
+        android:strokeWidth="2" />
+</vector>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#FFEBEE"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Kecap bottle -->
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M45,30L75,30L75,40L80,45L80,95C80,98 77,100 73,100L47,100C43,100 40,98 40,95L40,45L45,40Z" />
+    <!-- Bottle cap -->
+    <path
+        android:fillColor="#8B0000"
+        android:pathData="M48,22L72,22L72,32L48,32Z" />
+    <!-- Label -->
+    <path
+        android:fillColor="#FFCDD2"
+        android:pathData="M43,55L77,55L77,78L43,78Z" />
+    <!-- Kecap text indicator -->
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M50,62L70,62L70,66L50,66Z" />
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M55,70L65,70L65,72L55,72Z" />
+</vector>

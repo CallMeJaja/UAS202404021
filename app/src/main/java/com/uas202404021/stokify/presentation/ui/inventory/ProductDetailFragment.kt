@@ -72,6 +72,10 @@ class ProductDetailFragment : Fragment() {
         observeProduct(productId)
         observeHistory(productId)
         observeStockUpdateResult()
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setupHistoryRecyclerView() {
@@ -135,34 +139,62 @@ class ProductDetailFragment : Fragment() {
         binding.tvLocation.text = "Lokasi: ${product.location}"
 
         // Status badge
-        val badgeBackground = binding.tvStockStatus.background as? GradientDrawable
-        when {
+        val badgeColor = when {
             product.stock > product.minStock -> {
                 binding.tvStockStatus.text = "Aman"
-                badgeBackground?.setColor(Color.parseColor("#4CAF50"))
+                Color.parseColor("#4CAF50")
             }
             product.stock > 0 -> {
                 binding.tvStockStatus.text = "Menipis"
-                badgeBackground?.setColor(Color.parseColor("#FF9800"))
+                Color.parseColor("#FF9800")
             }
             else -> {
                 binding.tvStockStatus.text = "Habis"
-                badgeBackground?.setColor(Color.parseColor("#F44336"))
+                Color.parseColor("#F44336")
             }
         }
+        val badgeDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 16f * resources.displayMetrics.density
+            setColor(badgeColor)
+        }
+        binding.tvStockStatus.background = badgeDrawable
 
         // Load image
+        val cornerRadius = 20f * resources.displayMetrics.density
+        val shapeModel = binding.ivProductImage.shapeAppearanceModel.toBuilder()
+            .setAllCornerSizes(cornerRadius)
+            .build()
+        binding.ivProductImage.shapeAppearanceModel = shapeModel
+
         if (!product.imageUri.isNullOrEmpty()) {
             val uri = Uri.parse(product.imageUri)
-            val path = uri.path
-            if (path != null) {
-                val file = File(path)
-                if (file.exists()) {
+            when (uri.scheme) {
+                "android.resource" -> {
+                    // Resource URI: android.resource://package/drawable/name
+                    val resName = uri.lastPathSegment ?: ""
+                    val resId = resources.getIdentifier(resName, "drawable", requireContext().packageName)
+                    if (resId != 0) {
+                        binding.ivProductImage.setImageResource(resId)
+                    } else {
+                        binding.ivProductImage.setImageResource(R.drawable.ic_inventory)
+                    }
+                }
+                "file", "content" -> {
                     binding.ivProductImage.setImageURI(uri)
                 }
-            } else {
-                binding.ivProductImage.setImageURI(uri) // Coba load langsung sebagai URI fallback
+                else -> {
+                    // Try as file path
+                    val path = uri.path
+                    if (path != null && File(path).exists()) {
+                        binding.ivProductImage.setImageURI(uri)
+                    } else {
+                        binding.ivProductImage.setImageResource(R.drawable.ic_inventory)
+                    }
+                }
             }
+        } else {
+            binding.ivProductImage.setImageResource(R.drawable.ic_inventory)
         }
     }
 
@@ -195,35 +227,46 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun showStockDialog(product: ProductEntity, type: String) {
-        val amountInput = EditText(requireContext()).apply {
-            hint = "Jumlah"
-            inputType = android.text.InputType.TYPE_CLASS_NUMBER
-            val dp16 = (16 * resources.displayMetrics.density).toInt()
-            setPadding(dp16, dp16, dp16, dp16)
-        }
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_stock_update, null)
 
-        val container = LinearLayout(requireContext()).apply {
-            val dp16 = (16 * resources.displayMetrics.density).toInt()
-            setPadding(dp16, 0, dp16, 0)
-            addView(amountInput)
-        }
+        val ivIcon = dialogView.findViewById<android.widget.ImageView>(R.id.ivStockDialogIcon)
+        val tvTitle = dialogView.findViewById<TextView>(R.id.tvStockDialogTitle)
+        val tvDesc = dialogView.findViewById<TextView>(R.id.tvStockDialogDesc)
+        val tilAmount = dialogView.findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.tilStockAmount)
+        val etAmount = dialogView.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etStockAmount)
+        val btnConfirm = dialogView.findViewById<MaterialButton>(R.id.btnStockDialogConfirm)
 
-        val title = if (type == "IN") "Stok Masuk" else "Stok Keluar"
+        val isIn = type == "IN"
+        val accentColor = if (isIn) Color.parseColor("#4CAF50") else Color.parseColor("#F44336")
 
-        AlertDialog.Builder(requireContext())
-            .setTitle(title)
-            .setView(container)
-            .setPositiveButton("OK") { _, _ ->
-                val amountText = amountInput.text.toString()
-                val amount = amountText.toIntOrNull()
-                if (amount == null || amount <= 0) {
-                    Toast.makeText(requireContext(), "Masukkan jumlah yang valid", Toast.LENGTH_SHORT).show()
-                } else {
-                    viewModel.quickStockUpdate(product, amount, type)
-                }
-            }
-            .setNegativeButton("Batal", null)
+        ivIcon.setImageResource(if (isIn) R.drawable.ic_add else R.drawable.ic_minus)
+        ivIcon.setColorFilter(accentColor)
+        tvTitle.text = if (isIn) "Stok Masuk" else "Stok Keluar"
+        tvDesc.text = "Stok saat ini: ${product.stock}"
+        tilAmount.helperText = if (isIn) "Jumlah yang akan ditambahkan" else "Jumlah yang akan dikurangi"
+        btnConfirm.backgroundTintList = android.content.res.ColorStateList.valueOf(accentColor)
+        btnConfirm.setTextColor(Color.WHITE)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(false)
             .show()
+
+        dialogView.findViewById<MaterialButton>(R.id.btnStockDialogCancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnConfirm.setOnClickListener {
+            val amountText = etAmount.text.toString()
+            val amount = amountText.toIntOrNull()
+            if (amount == null || amount <= 0) {
+                tilAmount.error = "Masukkan jumlah yang valid"
+            } else {
+                tilAmount.error = null
+                viewModel.quickStockUpdate(product, amount, type)
+                dialog.dismiss()
+            }
+        }
     }
 
     private fun showDeleteConfirmation(product: ProductEntity) {

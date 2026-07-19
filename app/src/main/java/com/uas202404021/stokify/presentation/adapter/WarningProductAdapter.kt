@@ -20,10 +20,12 @@ class WarningProductAdapter(
             binding.tvWarningStock.text = "Stok: ${product.stock} / Min: ${product.minStock}"
 
             // Set badge color to red
-            val badgeBg = binding.tvWarningBadge.background
-            if (badgeBg is GradientDrawable) {
-                badgeBg.setColor(android.graphics.Color.parseColor("#F44336"))
+            val badgeDrawable = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = 16f * binding.root.resources.displayMetrics.density
+                setColor(android.graphics.Color.parseColor("#F44336"))
             }
+            binding.tvWarningBadge.background = badgeDrawable
 
             binding.root.setOnClickListener { onItemClick(product) }
         }

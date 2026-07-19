@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Flour bag -->
+    <path
+        android:fillColor="#F57F17"
+        android:pathData="M35,30L85,30L85,95C85,98 82,100 78,100L42,100C38,100 35,98 35,95Z" />
+    <!-- Bag top gathered -->
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M40,30C40,30 45,20 60,20C75,20 80,30 80,30" />
+    <path
+        android:fillColor="#BF360C"
+        android:pathData="M55,18L65,18L63,22L57,22Z" />
+    <!-- Label -->
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M42,48L78,48L78,72L42,72Z" />
+    <!-- Wheat icon -->
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M57,55L63,55L63,65L57,65Z" />
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M52,52L57,55M68,52L63,55"
+        android:strokeColor="#E65100"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+</vector>

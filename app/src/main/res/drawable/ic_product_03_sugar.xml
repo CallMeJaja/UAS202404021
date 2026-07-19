@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Sugar bag -->
+    <path
+        android:fillColor="#F57F17"
+        android:pathData="M35,35L85,35L85,95C85,98 82,100 78,100L42,100C38,100 35,98 35,95Z" />
+    <!-- Bag top fold -->
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M35,35L85,35L80,28L40,28Z" />
+    <!-- Label area -->
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M40,50L80,50L80,75L40,75Z" />
+    <!-- Sugar text indicator -->
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M50,58L70,58L70,62L50,62Z" />
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M55,67L65,67L65,69L55,69Z" />
+</vector>

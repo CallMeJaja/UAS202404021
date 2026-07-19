@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#F3E5F5"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Tissue box -->
+    <path
+        android:fillColor="#6A1B9A"
+        android:pathData="M25,40L95,40L95,95C95,98 92,100 88,100L32,100C28,100 25,98 25,95Z" />
+    <!-- Box top -->
+    <path
+        android:fillColor="#7B1FA2"
+        android:pathData="M25,38L95,38L95,45L25,45Z" />
+    <!-- Tissue sticking out -->
+    <path
+        android:fillColor="#F3E5F5"
+        android:pathData="M50,25C50,25 55,20 60,25C65,30 60,35 55,35C50,35 50,25 50,25Z" />
+    <path
+        android:fillColor="#E1BEE7"
+        android:pathData="M52,30L58,30L58,40L52,40Z" />
+    <!-- Dot pattern -->
+    <path
+        android:fillColor="#CE93D8"
+        android:pathData="M35,55C35,55 37,53 39,55C41,57 39,59 37,57C35,55 35,55 35,55Z" />
+    <path
+        android:fillColor="#CE93D8"
+        android:pathData="M55,55C55,55 57,53 59,55C61,57 59,59 57,57C55,55 55,55 55,55Z" />
+    <path
+        android:fillColor="#CE93D8"
+        android:pathData="M75,55C75,55 77,53 79,55C81,57 79,59 77,57C75,55 75,55 75,55Z" />
+</vector>

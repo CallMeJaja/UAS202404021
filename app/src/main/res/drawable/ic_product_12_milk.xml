@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Milk carton -->
+    <path
+        android:fillColor="#1565C0"
+        android:pathData="M35,30L85,30L85,95C85,98 82,100 78,100L42,100C38,100 35,98 35,95Z" />
+    <!-- Carton roof -->
+    <path
+        android:fillColor="#0D47A1"
+        android:pathData="M35,30L60,18L85,30Z" />
+    <!-- Spout -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M55,18L65,18L62,12L58,12Z" />
+    <!-- Milk label -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M40,45L80,45L80,80L40,80Z" />
+    <!-- Milk splash -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,55C50,55 55,65 60,60C65,55 70,65 70,55"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+</vector>
