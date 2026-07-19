@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Oil bottle -->
+    <path
+        android:fillColor="#F57F17"
+        android:pathData="M50,25L70,25L70,35L75,40L75,95C75,98 72,100 68,100L52,100C48,100 45,98 45,95L45,40L50,35Z" />
+    <!-- Bottle cap -->
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M52,20L68,20L68,26L52,26Z" />
+    <!-- Label -->
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M48,55L72,55L72,75L48,75Z" />
+    <!-- Oil drop -->
+    <path
+        android:fillColor="#FF8F00"
+        android:pathData="M60,58C60,58 65,65 65,69C65,72 63,74 60,74C57,74 55,72 55,69C55,65 60,58 60,58Z" />
+</vector>

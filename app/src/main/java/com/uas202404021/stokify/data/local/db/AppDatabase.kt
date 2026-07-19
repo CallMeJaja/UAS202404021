@@ -60,6 +60,18 @@ abstract class AppDatabase : RoomDatabase() {
                 scope.launch(Dispatchers.IO) {
                     populateInitialData(database.userDao(), database.productDao())
                 }
+            } ?: run {
+                // INSTANCE belum di-set saat onCreate dipanggil.
+                // Tunggu hingga INSTANCE tersedia lalu seed.
+                scope.launch(Dispatchers.IO) {
+                    repeat(10) {
+                        kotlinx.coroutines.delay(300)
+                        if (INSTANCE != null) return@launch
+                    }
+                    INSTANCE?.let { database ->
+                        populateInitialData(database.userDao(), database.productDao())
+                    }
+                }
             }
         }
 
@@ -71,37 +83,37 @@ abstract class AppDatabase : RoomDatabase() {
             userDao.registerUser(UserEntity(username = "admin", passwordHash = adminPasswordHash, fullName = "Owner Toko", role = "Admin"))
             userDao.registerUser(UserEntity(username = "staff", passwordHash = staffPasswordHash, fullName = "Staf Gudang", role = "Staff"))
 
-            // 2. Seeding 20 Data Produk Awal
+            // 2. Seeding 20 Data Produk Awal (Toko Kelontong/Sembako)
             val dummyProducts = listOf(
-                // Kategori: Elektronik
-                ProductEntity(sku = "ELK-001", name = "Mouse Wireless Logitech", category = "Elektronik", stock = 15, minStock = 5, price = 150000.0, imageUri = null, location = "Rak A-1"),
-                ProductEntity(sku = "ELK-002", name = "Keyboard Mechanical Rexus", category = "Elektronik", stock = 8, minStock = 3, price = 350000.0, imageUri = null, location = "Rak A-1"),
-                ProductEntity(sku = "ELK-003", name = "Headset Gaming Fantech", category = "Elektronik", stock = 20, minStock = 5, price = 250000.0, imageUri = null, location = "Rak A-2"),
-                ProductEntity(sku = "ELK-004", name = "Kabel HDMI 2 Meter", category = "Elektronik", stock = 40, minStock = 10, price = 450000.0, imageUri = null, location = "Rak A-2"),
+                // Sembako
+                ProductEntity(sku = "SBK-001", name = "Beras Premium 5kg", category = "Sembako", stock = 25, minStock = 10, price = 65000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_01_rice", location = "Rak A-1"),
+                ProductEntity(sku = "SBK-002", name = "Minyak Goreng Bimoli 2L", category = "Sembako", stock = 30, minStock = 10, price = 38000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_02_oil", location = "Rak A-1"),
+                ProductEntity(sku = "SBK-003", name = "Gula Pasir Gulaku 1kg", category = "Sembako", stock = 40, minStock = 15, price = 15500.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_03_sugar", location = "Rak A-2"),
+                ProductEntity(sku = "SBK-004", name = "Telur Ayam 1kg", category = "Sembako", stock = 20, minStock = 8, price = 28000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_04_egg", location = "Rak A-2"),
+                ProductEntity(sku = "SBK-005", name = "Tepung Terigu Segitiga Biru 1kg", category = "Sembako", stock = 18, minStock = 6, price = 12000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_05_flour", location = "Rak A-3"),
 
-                // Kategori: Pakaian
-                ProductEntity(sku = "PKN-001", name = "Kaos Polos Hitam XL", category = "Pakaian", stock = 25, minStock = 8, price = 75000.0, imageUri = null, location = "Rak B-1"),
-                ProductEntity(sku = "PKN-002", name = "Kemeja Flanel Kotak", category = "Pakaian", stock = 12, minStock = 4, price = 150000.0, imageUri = null, location = "Rak B-1"),
-                ProductEntity(sku = "PKN-003", name = "Jaket Hoodie Navy M", category = "Pakaian", stock = 5, minStock = 3, price = 200000.0, imageUri = null, location = "Rak B-2"),
-                ProductEntity(sku = "PKN-004", name = "Celana Chino Cream L", category = "Pakaian", stock = 18, minStock = 5, price = 180000.0, imageUri = null, location = "Rak B-2"),
+                // Makanan
+                ProductEntity(sku = "MKN-001", name = "Indomie Goreng", category = "Makanan", stock = 80, minStock = 30, price = 3500.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_06_noodle", location = "Rak B-1"),
+                ProductEntity(sku = "MKN-002", name = "Kopi Kapal Api Sachet", category = "Makanan", stock = 100, minStock = 40, price = 1800.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_07_coffee", location = "Rak B-1"),
+                ProductEntity(sku = "MKN-003", name = "Kecap Bango 275ml", category = "Makanan", stock = 24, minStock = 8, price = 13000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_08_sauce", location = "Rak B-2"),
+                ProductEntity(sku = "MKN-004", name = "Saus Sambal ABC 335ml", category = "Makanan", stock = 20, minStock = 8, price = 14500.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_09_chili", location = "Rak B-2"),
+                ProductEntity(sku = "MKN-005", name = "Teh Pucuk Harum 350ml", category = "Makanan", stock = 60, minStock = 20, price = 4000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_10_tea", location = "Rak B-3"),
 
-                // Kategori: Makanan/Minuman
-                ProductEntity(sku = "MKN-001", name = "Kopi Bubuk Arabika 250g", category = "Makanan/Minuman", stock = 30, minStock = 10, price = 45000.0, imageUri = null, location = "Rak C-1"),
-                ProductEntity(sku = "MKN-002", name = "Teh Hijau Celup Kotak", category = "Makanan/Minuman", stock = 22, minStock = 6, price = 15000.0, imageUri = null, location = "Rak C-1"),
-                ProductEntity(sku = "MKN-003", name = "Cokelat Batang SilverQueen", category = "Makanan/Minuman", stock = 50, minStock = 15, price = 20000.0, imageUri = null, location = "Rak C-2"),
-                ProductEntity(sku = "MKN-004", name = "Biskuit Kaleng Roma", category = "Makanan/Minuman", stock = 3, minStock = 5, price = 35000.0, imageUri = null, location = "Rak C-2"), // Kondisi Kritis
+                // Minuman
+                ProductEntity(sku = "MIN-001", name = "Aqua 600ml", category = "Minuman", stock = 72, minStock = 24, price = 4000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_11_water", location = "Rak C-1"),
+                ProductEntity(sku = "MIN-002", name = "Susu Indomilk 380g", category = "Minuman", stock = 30, minStock = 10, price = 12500.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_12_milk", location = "Rak C-1"),
+                ProductEntity(sku = "MIN-003", name = "Teh Celup Sariwangi 25sx", category = "Minuman", stock = 35, minStock = 12, price = 7500.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_13_tea_bag", location = "Rak C-2"),
 
-                // Kategori: Aksesoris
-                ProductEntity(sku = "AKS-001", name = "Gantungan Kunci Kulit", category = "Aksesoris", stock = 60, minStock = 10, price = 12000.0, imageUri = null, location = "Rak D-1"),
-                ProductEntity(sku = "AKS-002", name = "Kacamata Hitam Sun", category = "Aksesoris", stock = 14, minStock = 4, price = 85000.0, imageUri = null, location = "Rak D-1"),
-                ProductEntity(sku = "AKS-003", name = "Topi Baseball Polos", category = "Aksesoris", stock = 2, minStock = 4, price = 50000.0, imageUri = null, location = "Rak D-2"), // Kondisi Kritis
-                ProductEntity(sku = "AKS-004", name = "Dompet Kartu Slim", category = "Aksesoris", stock = 16, minStock = 5, price = 95000.0, imageUri = null, location = "Rak D-2"),
+                // Perawatan
+                ProductEntity(sku = "BRS-001", name = "Sabun Lifebuoy Batang 100g", category = "Perawatan", stock = 50, minStock = 20, price = 3500.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_14_soap", location = "Rak D-1"),
+                ProductEntity(sku = "BRS-002", name = "Shampo Pantene Sachet", category = "Perawatan", stock = 100, minStock = 40, price = 1000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_15_shampoo", location = "Rak D-1"),
+                ProductEntity(sku = "BRS-003", name = "Minyak Kayu Putih Cap Lang 60ml", category = "Perawatan", stock = 15, minStock = 5, price = 18000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_16_cajuputi", location = "Rak D-2"),
 
-                // Kategori: Lainnya
-                ProductEntity(sku = "LNY-001", name = "Pena Gel Hitam 0.5 (Pack)", category = "Lainnya", stock = 35, minStock = 5, price = 30000.0, imageUri = null, location = "Rak E-1"),
-                ProductEntity(sku = "LNY-002", name = "Buku Catatan Grid A5", category = "Lainnya", stock = 20, minStock = 5, price = 25000.0, imageUri = null, location = "Rak E-1"),
-                ProductEntity(sku = "LNY-003", name = "Plester Luka Medis (Box)", category = "Lainnya", stock = 40, minStock = 10, price = 15000.0, imageUri = null, location = "Rak E-2"),
-                ProductEntity(sku = "LNY-004", name = "Payung Lipat Otomatis", category = "Lainnya", stock = 1, minStock = 3, price = 75000.0, imageUri = null, location = "Rak E-2") // Kondisi Kritis
+                // Rumah Tangga
+                ProductEntity(sku = "BRH-001", name = "Rinso Anti Noda 760g", category = "Rumah Tangga", stock = 25, minStock = 8, price = 18500.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_17_detergent", location = "Rak E-1"),
+                ProductEntity(sku = "BRH-002", name = "Tisu Paseo 250sheet", category = "Rumah Tangga", stock = 40, minStock = 15, price = 5500.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_18_tissue", location = "Rak E-1"),
+                ProductEntity(sku = "BRH-003", name = "Wipol Karbol 800ml", category = "Rumah Tangga", stock = 22, minStock = 8, price = 7000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_19_cleaner", location = "Rak E-2"),
+                ProductEntity(sku = "BRH-004", name = "Gas Elpiji 3kg", category = "Rumah Tangga", stock = 10, minStock = 5, price = 22000.0, imageUri = "android.resource://com.uas202404021.stokify/drawable/ic_product_20_gas", location = "Rak E-2")
             )
 
             for (product in dummyProducts) {

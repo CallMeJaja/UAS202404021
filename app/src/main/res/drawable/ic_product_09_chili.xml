@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#FFEBEE"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Chili sauce bottle -->
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M42,25L78,25L78,35L82,40L82,95C82,98 79,100 75,100L45,100C41,100 38,98 38,95L38,40L42,35Z" />
+    <!-- Cap -->
+    <path
+        android:fillColor="#8B0000"
+        android:pathData="M46,18L74,18L74,27L46,27Z" />
+    <!-- Label -->
+    <path
+        android:fillColor="#FFCDD2"
+        android:pathData="M42,50L78,50L78,80L42,80Z" />
+    <!-- Chili icon on label -->
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M55,60C55,60 50,68 55,72C60,76 65,68 60,64C55,60 55,60 55,60Z" />
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M57,58L60,54L63,58"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+</vector>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Egg 1 -->
+    <path
+        android:fillColor="#F57F17"
+        android:pathData="M45,30C45,30 30,50 30,65C30,78 37,88 45,88C53,88 60,78 60,65C60,50 45,30 45,30Z" />
+    <!-- Egg 2 -->
+    <path
+        android:fillColor="#FFB300"
+        android:pathData="M75,35C75,35 62,52 62,65C62,76 68,85 75,85C82,85 88,76 88,65C88,52 75,35 75,35Z" />
+    <!-- Highlight -->
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M40,55C40,55 38,48 42,45C46,42 48,50 45,55C42,60 40,55 40,55Z" />
+</vector>

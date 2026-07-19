@@ -63,11 +63,13 @@ class DashboardFragment : Fragment() {
         binding.tvRoleBadge.text = role
 
         // Set badge color based on role
-        val badgeBg = binding.tvRoleBadge.background
-        if (badgeBg is GradientDrawable) {
-            val color = if (role == "Admin") "#4CAF50" else "#2196F3"
-            badgeBg.setColor(android.graphics.Color.parseColor(color))
+        val color = if (role == "Admin") "#4CAF50" else "#2196F3"
+        val badgeDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 16f * resources.displayMetrics.density
+            setColor(android.graphics.Color.parseColor(color))
         }
+        binding.tvRoleBadge.background = badgeDrawable
     }
 
     private fun setupRoleControl(isAdmin: Boolean) {
@@ -89,6 +91,26 @@ class DashboardFragment : Fragment() {
     private fun observeDashboardData() {
         val formatRupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
+        // Stock status counts
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.emptyStockCount.collect { count ->
+                binding.tvEmptyStockCount.text = count.toString()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.menipisStockCount.collect { count ->
+                binding.tvMenipisStockCount.text = count.toString()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.safeStockCount.collect { count ->
+                binding.tvSafeStockCount.text = count.toString()
+            }
+        }
+
+        // Product and category counts
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productCount.collect { count ->
                 binding.tvProductCount.text = count.toString()
@@ -96,17 +118,19 @@ class DashboardFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.lowStockCount.collect { count ->
-                binding.tvLowStockCount.text = count.toString()
+            viewModel.categoryCount.collect { count ->
+                binding.tvCategoryCount.text = count.toString()
             }
         }
 
+        // Total asset (Admin only)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.totalAssetValue.collect { value ->
                 binding.tvTotalAsset.text = formatRupiah.format(value ?: 0.0)
             }
         }
 
+        // Warning products (Habis + Menipis)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.lowStockProducts.collect { products ->
                 warningAdapter.submitList(products)

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Soap bar -->
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M25,50L95,50L95,85C95,90 90,95 85,95L35,95C30,95 25,90 25,85Z" />
+    <!-- Soap highlight -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M30,55L90,55L90,70L30,70Z" />
+    <!-- Bubbles -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M40,35C40,35 45,30 50,35C55,40 45,45 40,35Z"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="2"
+        android:strokeAlpha="0.5" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M60,30C60,30 65,25 70,30C75,35 65,40 60,30Z"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="2"
+        android:strokeAlpha="0.5" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M75,38C75,38 78,34 82,38C86,42 78,46 75,38Z"
+        android:strokeColor="#2E7D32"
+        android:strokeWidth="1.5"
+        android:strokeAlpha="0.4" />
+</vector>

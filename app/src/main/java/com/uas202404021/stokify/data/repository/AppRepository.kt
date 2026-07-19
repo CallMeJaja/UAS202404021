@@ -53,6 +53,13 @@ class AppRepository(
     fun getTotalAssetValue(): Flow<Double?> = productDao.getTotalAssetValue()
     fun getLowStockProducts(): Flow<List<ProductEntity>> = productDao.getLowStockProducts()
 
+    // New Dashboard Statistics
+    fun getEmptyStockCount(): Flow<Int> = productDao.getEmptyStockCount()
+    fun getMenipisStockCount(): Flow<Int> = productDao.getMenipisStockCount()
+    fun getSafeStockCount(): Flow<Int> = productDao.getSafeStockCount()
+    fun getEmptyStockProducts(): Flow<List<ProductEntity>> = productDao.getEmptyStockProducts()
+    fun getCategoryCount(): Flow<Int> = productDao.getCategoryCount()
+
     // Stock History Operations
     fun getHistoryForProduct(productId: Int): Flow<List<StockHistoryEntity>> {
         return stockHistoryDao.getHistoryForProduct(productId)
