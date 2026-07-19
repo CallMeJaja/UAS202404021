@@ -35,13 +35,21 @@
     <string name="dashboard_greeting">Halo, %s!</string>
     <string name="dashboard_total_products">Total Produk</string>
     <string name="dashboard_variants">varian terdaftar</string>
-    <string name="dashboard_low_stock">Stok Kritis</string>
+    <string name="dashboard_low_stock">Stok Menipis</string>
     <string name="dashboard_need_attention">perlu perhatian</string>
     <string name="dashboard_total_asset">Total Nilai Aset</string>
     <string name="dashboard_all_inventory">Seluruh inventaris</string>
-    <string name="dashboard_stock_warning">Peringatan Stok Kritis</string>
-    <string name="dashboard_stock_warning_desc">Produk yang stoknya di bawah batas minimum</string>
+    <string name="dashboard_stock_warning">Peringatan Stok</string>
+    <string name="dashboard_stock_warning_desc">Produk yang perlu diperhatikan</string>
     <string name="dashboard_stock_safe">Semua stok dalam kondisi aman</string>
+    <string name="dashboard_empty_stock">Stok Habis</string>
+    <string name="dashboard_empty_stock_desc">produk kosong</string>
+    <string name="dashboard_menipis_stock">Stok Menipis</string>
+    <string name="dashboard_menipis_stock_desc">perlu restock</string>
+    <string name="dashboard_safe_stock">Stok Aman</string>
+    <string name="dashboard_safe_stock_desc">kondisi normal</string>
+    <string name="dashboard_total_categories">Total Kategori</string>
+    <string name="dashboard_categories_desc">kategori produk</string>
 
     <!-- Inventory -->
     <string name="search_hint">Cari Produk atau SKU...</string>
@@ -108,7 +116,7 @@
     <string name="report_summary">Ringkasan</string>
     <string name="report_total_products">Total Produk</string>
     <string name="report_total_stock">Total Stok</string>
-    <string name="report_critical_stock">Stok Kritis</string>
+    <string name="report_critical_stock">Stok Menipis</string>
     <string name="report_total_asset">Total Aset</string>
     <string name="report_stock_status">Status Stok</string>
     <string name="report_by_category">Produk per Kategori</string>

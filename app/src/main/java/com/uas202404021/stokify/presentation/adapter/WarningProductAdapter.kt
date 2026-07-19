@@ -1,5 +1,6 @@
 package com.uas202404021.stokify.presentation.adapter
 
+import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,13 +20,26 @@ class WarningProductAdapter(
             binding.tvWarningSku.text = product.sku
             binding.tvWarningStock.text = "Stok: ${product.stock} / Min: ${product.minStock}"
 
-            // Set badge color to red
+            // Set badge text and color based on stock level
+            val (badgeText, badgeColor) = when {
+                product.stock == 0 -> "Habis" to Color.parseColor("#F44336")
+                else -> "Menipis" to Color.parseColor("#FF9800")
+            }
+            binding.tvWarningBadge.text = badgeText
+
             val badgeDrawable = GradientDrawable().apply {
                 shape = GradientDrawable.RECTANGLE
                 cornerRadius = 16f * binding.root.resources.displayMetrics.density
-                setColor(android.graphics.Color.parseColor("#F44336"))
+                setColor(badgeColor)
             }
             binding.tvWarningBadge.background = badgeDrawable
+
+            // Set card stroke color based on stock level
+            val cardStrokeColor = if (product.stock == 0) Color.parseColor("#F44336") else Color.parseColor("#FF9800")
+            binding.root.strokeColor = cardStrokeColor
+
+            // Set stock text color based on stock level
+            binding.tvWarningStock.setTextColor(badgeColor)
 
             binding.root.setOnClickListener { onItemClick(product) }
         }

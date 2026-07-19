@@ -73,21 +73,30 @@ class ReportFragment : Fragment() {
         barChart = binding.barChartCategory
         horizontalBarChart = binding.horizontalBarChartLowStock
 
+        val nightModeFlags = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK
+        val isDarkMode = nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES
+        val labelColor = if (isDarkMode) Color.parseColor("#E5E1E7") else Color.parseColor("#1C1B1F")
+        val gridColor = if (isDarkMode) Color.parseColor("#363539") else Color.parseColor("#E0E0E0")
+
         // Pie Chart Configuration
         pieChart.apply {
             description.isEnabled = false
             setUsePercentValues(true)
             setEntryLabelTextSize(12f)
-            setEntryLabelColor(Color.BLACK)
+            setEntryLabelColor(labelColor)
             centerText = "Status Stok"
             setCenterTextSize(16f)
             setCenterTextTypeface(android.graphics.Typeface.DEFAULT_BOLD)
+            setCenterTextColor(labelColor)
             isDrawHoleEnabled = true
             holeRadius = 40f
             transparentCircleRadius = 45f
             setDrawEntryLabels(true)
             legend.isEnabled = true
             legend.textSize = 12f
+            legend.textColor = labelColor
+            setNoDataText("Belum ada data")
+            setNoDataTextColor(labelColor)
         }
 
         // Bar Chart Configuration
@@ -100,8 +109,13 @@ class ReportFragment : Fragment() {
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.granularity = 1f
             xAxis.setDrawGridLines(false)
+            xAxis.textColor = labelColor
+            axisLeft.textColor = labelColor
+            axisLeft.gridColor = gridColor
             axisLeft.axisMinimum = 0f
             axisRight.isEnabled = false
+            setNoDataText("Belum ada data")
+            setNoDataTextColor(labelColor)
         }
 
         // Horizontal Bar Chart Configuration
@@ -113,8 +127,13 @@ class ReportFragment : Fragment() {
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.granularity = 1f
             xAxis.setDrawGridLines(false)
+            xAxis.textColor = labelColor
+            axisLeft.textColor = labelColor
+            axisLeft.gridColor = gridColor
             axisLeft.axisMinimum = 0f
             axisRight.isEnabled = false
+            setNoDataText("Belum ada data")
+            setNoDataTextColor(labelColor)
         }
     }
 
