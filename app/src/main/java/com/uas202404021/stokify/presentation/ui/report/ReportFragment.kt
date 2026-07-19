@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -23,10 +24,13 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.uas202404021.stokify.R
 import com.uas202404021.stokify.data.local.db.AppDatabase
+import com.uas202404021.stokify.data.local.db.ProductEntity
 import com.uas202404021.stokify.data.repository.AppRepository
 import com.uas202404021.stokify.databinding.FragmentReportBinding
 import com.uas202404021.stokify.presentation.viewmodel.ReportViewModel
 import com.uas202404021.stokify.presentation.viewmodel.ReportViewModelFactory
+import com.uas202404021.stokify.util.CsvExporter
+import com.uas202404021.stokify.util.PdfGenerator
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -116,12 +120,55 @@ class ReportFragment : Fragment() {
 
     private fun setupExportButtons() {
         binding.btnExportPdf.setOnClickListener {
-            Toast.makeText(requireContext(), "Export PDF coming soon", Toast.LENGTH_SHORT).show()
+            viewLifecycleOwner.lifecycleScope.launch {
+                try {
+                    val products = viewModel.allProducts.value
+                    if (products.isEmpty()) {
+                        Toast.makeText(requireContext(), "Tidak ada data untuk diexport", Toast.LENGTH_SHORT).show()
+                        return@launch
+                    }
+                    val file = PdfGenerator.export(requireContext(), products)
+                    shareFile(file, "application/pdf")
+                    Toast.makeText(requireContext(), getString(R.string.export_success), Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "${getString(R.string.export_failed)}: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
         }
 
         binding.btnExportCsv.setOnClickListener {
-            Toast.makeText(requireContext(), "Export CSV coming soon", Toast.LENGTH_SHORT).show()
+            viewLifecycleOwner.lifecycleScope.launch {
+                try {
+                    val products = viewModel.allProducts.value
+                    if (products.isEmpty()) {
+                        Toast.makeText(requireContext(), "Tidak ada data untuk diexport", Toast.LENGTH_SHORT).show()
+                        return@launch
+                    }
+                    val file = CsvExporter.export(requireContext(), products)
+                    shareFile(file, "text/csv")
+                    Toast.makeText(requireContext(), getString(R.string.export_success), Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "${getString(R.string.export_failed)}: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
         }
+    }
+
+    private fun shareFile(file: java.io.File, mimeType: String) {
+        val uri = FileProvider.getUriForFile(
+            requireContext(),
+            "${requireContext().packageName}.fileprovider",
+            file
+        )
+
+        val shareIntent = android.content.Intent().apply {
+            action = android.content.Intent.ACTION_SEND
+            type = mimeType
+            putExtra(android.content.Intent.EXTRA_STREAM, uri)
+            addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+
+        startActivity(android.content.Intent.createChooser(shareIntent, getString(R.string.share_report)))
     }
 
     private fun observeData() {
