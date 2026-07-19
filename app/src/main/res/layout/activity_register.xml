@@ -21,7 +21,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/register_title"
             android:textSize="32sp"
-            android:fontFamily="@font/hanken_grotesk_bold"
+            
             android:textColor="?attr/colorOnSurface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/register_subtitle"
             android:textSize="16sp"
-            android:fontFamily="@font/inter_regular"
+            
             android:textColor="?attr/colorOnSurfaceVariant"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
@@ -53,7 +53,7 @@
                 android:id="@+id/etFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
+                
                 android:inputType="textPersonName"
                 android:imeOptions="actionNext" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,7 +73,7 @@
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
+                
                 android:inputType="text"
                 android:imeOptions="actionNext" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +94,7 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
+                
                 android:inputType="textPassword"
                 android:imeOptions="actionNext" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +115,7 @@
                 android:id="@+id/etConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
+                
                 android:inputType="textPassword"
                 android:imeOptions="actionDone" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -135,7 +135,7 @@
                 android:id="@+id/actRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_regular"
+                
                 android:inputType="none"
                 app:simpleItems="@array/roles_array" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -147,7 +147,7 @@
             android:layout_height="56dp"
             android:layout_marginTop="32dp"
             android:text="@string/register_button"
-            android:fontFamily="@font/inter_regular"
+            
             android:textSize="16sp"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +162,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="32dp"
             android:text="@string/register_login_link"
-            android:fontFamily="@font/inter_regular"
+            
             android:textColor="?attr/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
