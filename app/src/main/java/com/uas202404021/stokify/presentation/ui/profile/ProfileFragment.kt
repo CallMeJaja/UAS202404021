@@ -41,9 +41,15 @@ class ProfileFragment : Fragment() {
         val username = sessionManager.getUsername() ?: "-"
         val role = sessionManager.getRole() ?: "Staff"
 
+        // Header section
         binding.tvFullName.text = fullName
         binding.tvUsername.text = "@$username"
         binding.tvRoleBadge.text = role
+
+        // Info card section
+        binding.tvFullNameValue.text = fullName
+        binding.tvUsernameValue.text = username
+        binding.tvRoleValue.text = role
 
         // Set warna badge berdasarkan role
         val badgeColor = if (role == "Admin") "#4CAF50" else "#2196F3"
