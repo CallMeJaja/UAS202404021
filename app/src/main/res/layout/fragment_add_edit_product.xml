@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="?attr/colorSurface">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text="Form Produk"
             android:textSize="24sp"
+            android:textColor="?attr/colorOnSurface"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,8 +31,11 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginTop="24dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp"
+            app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="?attr/colorOutlineVariant"
+            app:strokeWidth="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle">
@@ -39,7 +44,7 @@
                 android:id="@+id/ivProductImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#E0E0E0"
+                android:background="?attr/colorSurfaceContainerLow"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_camera" />
         </com.google.android.material.card.MaterialCardView>
@@ -50,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Ketuk gambar untuk unggah foto"
-            android:textColor="#757575"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +68,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="SKU Produk (Wajib)"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
             app:layout_constraintTop_toBottomOf="@id/tvImageHelper">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSku"
@@ -79,6 +88,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Nama Produk"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
             app:layout_constraintTop_toBottomOf="@id/tilSku">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etName"
@@ -95,6 +108,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Kategori"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
             app:layout_constraintTop_toBottomOf="@id/tilName">
             <AutoCompleteTextView
                 android:id="@+id/actCategory"
@@ -118,7 +135,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:hint="Jumlah Stok">
+                android:hint="Jumlah Stok"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etStock"
                     android:layout_width="match_parent"
@@ -134,7 +155,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:hint="Min. Stok">
+                android:hint="Min. Stok"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etMinStock"
                     android:layout_width="match_parent"
@@ -151,6 +176,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Harga Satuan (Rp)"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
             app:layout_constraintTop_toBottomOf="@id/llStock">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPrice"
@@ -167,6 +196,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Lokasi Rak Gudang"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
             app:layout_constraintTop_toBottomOf="@id/tilPrice">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLocation"
@@ -176,13 +209,16 @@
                 android:imeOptions="actionDone" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
+            style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
             android:text="Simpan Produk"
+            android:textSize="16sp"
+            app:cornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilLocation" />
 
