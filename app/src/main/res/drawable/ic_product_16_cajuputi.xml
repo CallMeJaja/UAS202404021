@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Small bottle -->
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M48,25L72,25L72,35L76,40L76,95C76,98 73,100 70,100L50,100C47,100 44,98 44,95L44,40L48,35Z" />
+    <!-- Cap -->
+    <path
+        android:fillColor="#1B5E20"
+        android:pathData="M50,18L70,18L70,27L50,27Z" />
+    <!-- Label -->
+    <path
+        android:fillColor="#C8E6C9"
+        android:pathData="M47,45L73,45L73,75L47,75Z" />
+    <!-- Leaf icon -->
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M55,55C55,55 60,48 68,55C68,55 62,65 55,55Z" />
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M60,55L62,62"
+        android:strokeColor="#1B5E20"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round" />
+</vector>

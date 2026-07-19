@@ -16,8 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp">
+            android:orientation="vertical">
 
             <!-- Success Banner -->
             <include
@@ -31,16 +30,21 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivProductImage"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
                 android:background="?attr/colorSurfaceContainer"
+                android:clipToOutline="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_inventory"
-                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.ExtraLarge" />
+                app:strokeColor="?attr/colorOutlineVariant"
+                app:strokeWidth="1dp" />
 
             <!-- Product Info Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 app:cardBackgroundColor="?attr/colorSurfaceContainerLowest"
                 app:cardCornerRadius="16dp"
@@ -60,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:text="Nama Produk"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -136,11 +140,15 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnDecrease"
                             style="@style/Widget.Material3.Button.OutlinedButton"
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:text="-"
-                            android:textSize="24sp"
-                            app:cornerRadius="16dp" />
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:cornerRadius="12dp"
+                            app:icon="@drawable/ic_minus"
+                            app:iconGravity="textStart"
+                            app:iconPadding="0dp"
+                            app:iconSize="20dp" />
 
                         <TextView
                             android:id="@+id/tvStockCount"
@@ -150,18 +158,24 @@
                             android:gravity="center"
                             android:text="15"
                             android:textColor="?attr/colorOnSurface"
-                            android:textSize="32sp"
+                            android:textSize="28sp"
                             android:textStyle="bold" />
 
                         <!-- Tombol Tambah -->
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnIncrease"
-                            style="@style/Widget.Material3.Button.OutlinedButton"
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:text="+"
-                            android:textSize="24sp"
-                            app:cornerRadius="16dp" />
+                            style="@style/Widget.Material3.Button"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:backgroundTint="?attr/colorPrimary"
+                            app:cornerRadius="12dp"
+                            app:icon="@drawable/ic_add"
+                            app:iconGravity="textStart"
+                            app:iconPadding="0dp"
+                            app:iconSize="20dp"
+                            app:iconTint="?attr/colorOnPrimary" />
                     </LinearLayout>
 
                     <TextView
@@ -191,61 +205,92 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Stock History Section -->
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/stock_history"
-                android:textColor="?attr/colorOnSurface"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:nestedScrollingEnabled="false"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stock_history"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvEmptyHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="32dp"
-                android:text="@string/empty_history_title"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="14sp"
-                android:visibility="gone" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <TextView
+                    android:id="@+id/tvEmptyHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="32dp"
+                    android:text="@string/empty_history_title"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <!-- Action Buttons (Admin Only) -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEdit"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/edit_product"
-                android:textSize="16sp"
-                app:cornerRadius="12dp"
-                app:icon="@drawable/ic_edit" />
+                android:layout_marginBottom="32dp"
+                android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDelete"
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="?attr/colorError"
-                android:text="@string/delete_product"
-                android:textSize="16sp"
-                app:cornerRadius="12dp"
-                app:icon="@drawable/ic_delete"
-                app:iconTint="@color/on_error" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEdit"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/edit_product"
+                    android:textSize="16sp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_edit" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDelete"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="?attr/colorError"
+                    android:text="@string/delete_product"
+                    android:textSize="16sp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_delete"
+                    app:iconTint="@color/on_error" />
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- Back Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBack"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:backgroundTint="@android:color/white"
+        app:icon="@drawable/ic_back"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="24dp"
+        app:iconTint="?attr/colorOnSurface"
+        app:strokeColor="?attr/colorOutlineVariant"
+        app:strokeWidth="1dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

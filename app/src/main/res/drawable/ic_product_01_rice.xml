@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Rice bowl icon -->
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M60,25C45,25 32,35 30,48C28,61 35,72 60,72C85,72 92,61 90,48C88,35 75,25 60,25Z" />
+    <path
+        android:fillColor="#BF360C"
+        android:pathData="M38,50C38,50 45,45 52,50C59,55 66,50 73,50C80,50 82,55 82,55"
+        android:strokeColor="#BF360C"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#E65100"
+        android:pathData="M30,72L90,72C90,72 88,85 60,85C32,85 30,72 30,72Z" />
+    <!-- Steam lines -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M48,20L48,30M60,18L60,28M72,20L72,30"
+        android:strokeColor="#E65100"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.5" />
+</vector>

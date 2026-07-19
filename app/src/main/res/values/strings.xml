@@ -91,9 +91,15 @@
 
     <!-- Profile -->
     <string name="profile_title">Profil</string>
+    <string name="profile_fullname_label">Nama Lengkap</string>
+    <string name="profile_username_label">Username</string>
+    <string name="profile_role_label">Peran</string>
     <string name="profile_about">Tentang Aplikasi</string>
+    <string name="profile_app_name_label">Nama Aplikasi</string>
+    <string name="profile_version_label">Versi</string>
+    <string name="profile_created_for_label">Dibuat untuk</string>
     <string name="profile_version">Versi 1.0</string>
-    <string name="profile_description">Dibuat untuk UAS Android 2024</string>
+    <string name="profile_description">UAS Android 2026</string>
     <string name="profile_logout">Keluar</string>
 
     <!-- Report -->

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Background -->
+    <path
+        android:fillColor="#FFEBEE"
+        android:pathData="M0,0h120v120H0z" />
+    <!-- Tea bottle -->
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M42,28L78,28L78,38L82,42L82,95C82,98 79,100 75,100L45,100C41,100 38,98 38,95L38,42L42,38Z" />
+    <!-- Cap -->
+    <path
+        android:fillColor="#8B0000"
+        android:pathData="M46,20L74,20L74,30L46,30Z" />
+    <!-- Tea color inside -->
+    <path
+        android:fillColor="#FF8A65"
+        android:pathData="M42,50L78,50L76,95L44,95Z" />
+    <!-- Tea label -->
+    <path
+        android:fillColor="#FFCDD2"
+        android:pathData="M44,55L76,55L76,75L44,75Z" />
+    <!-- Leaf icon -->
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M55,62C55,62 60,58 65,62C65,62 60,68 55,62Z" />
+</vector>

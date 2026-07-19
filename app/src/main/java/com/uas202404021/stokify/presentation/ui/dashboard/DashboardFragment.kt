@@ -63,11 +63,13 @@ class DashboardFragment : Fragment() {
         binding.tvRoleBadge.text = role
 
         // Set badge color based on role
-        val badgeBg = binding.tvRoleBadge.background
-        if (badgeBg is GradientDrawable) {
-            val color = if (role == "Admin") "#4CAF50" else "#2196F3"
-            badgeBg.setColor(android.graphics.Color.parseColor(color))
+        val color = if (role == "Admin") "#4CAF50" else "#2196F3"
+        val badgeDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 16f * resources.displayMetrics.density
+            setColor(android.graphics.Color.parseColor(color))
         }
+        binding.tvRoleBadge.background = badgeDrawable
     }
 
     private fun setupRoleControl(isAdmin: Boolean) {
