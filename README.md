@@ -195,28 +195,34 @@ Menyimpan riwayat perubahan stok.
 ## Screenshots
 
 ### Splash Screen
-<img src="screenshots/splash.png" width="250">
+<img src="screenshots/splash_screen.jpg" width="250">
 
 ### Login
-<img src="screenshots/login.png" width="250">
+<img src="screenshots/login.jpg" width="250">
 
-### Dashboard
-<img src="screenshots/dashboard.png" width="250">
+### Register
+<img src="screenshots/register.jpg" width="250">
+
+### Dashboard Admin
+<img src="screenshots/dashboard_admin.jpg" width="250">
+
+### Dashboard Staff
+<img src="screenshots/dashboard_staff.jpg" width="250">
 
 ### Katalog Produk
-<img src="screenshots/katalog.png" width="250">
+<img src="screenshots/katalog.jpg" width="250">
 
 ### Detail Produk
-<img src="screenshots/detail.png" width="250">
+<img src="screenshots/detail.jpg" width="250">
 
-### Tambah/Edit Produk
-<img src="screenshots/form.png" width="250">
+### Tambah Produk
+<img src="screenshots/form.jpg" width="250">
 
 ### Laporan
-<img src="screenshots/report.png" width="250">
+<img src="screenshots/report.jpg" width="250">
 
 ### Profil
-<img src="screenshots/profile.png" width="250">
+<img src="screenshots/profile.jpg" width="250">
 
 ---
 
