@@ -5,45 +5,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="?attr/colorSurface">
 
     <androidx.constraintlayout.widget.ConstraintLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dp"
+        android:padding="24dp"
         tools:context=".presentation.ui.auth.LoginActivity">
+
+        <!-- Logo Container -->
+        <FrameLayout
+            android:id="@+id/logoContainer"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/bg_status_badge"
+            android:backgroundTint="?attr/colorPrimaryContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_inventory"
+                app:tint="?attr/colorOnPrimaryContainer" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:text="Stokify"
+            android:layout_marginTop="24dp"
+            android:text="@string/login_title"
             android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="?attr/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/hanken_grotesk_bold"
+            android:textColor="?attr/colorOnSurface"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/logoContainer" />
 
         <TextView
             android:id="@+id/tvSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Silakan masuk untuk mengelola inventaris"
+            android:text="@string/login_subtitle"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/inter_regular"
+            android:textColor="?attr/colorOnSurfaceVariant"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilUsername"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:hint="Username"
+            android:hint="@string/login_username"
+            app:startIconDrawable="@drawable/ic_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
@@ -52,6 +73,7 @@
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
                 android:inputType="text"
                 android:imeOptions="actionNext" />
 
@@ -60,10 +82,10 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Kata Sandi"
+            android:hint="@string/login_password"
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,30 +95,36 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
                 android:inputType="textPassword"
                 android:imeOptions="actionDone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
-            android:layout_width="0dp"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="32dp"
-            android:text="Masuk"
+            android:text="@string/login_button"
+            android:fontFamily="@font/inter_regular"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilPassword" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/tvRegisterLink"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="32dp"
-            android:text="Belum punya akun? Daftar di sini"
+            android:text="@string/login_register_link"
+            android:fontFamily="@font/inter_regular"
             android:textColor="?attr/colorPrimary"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
