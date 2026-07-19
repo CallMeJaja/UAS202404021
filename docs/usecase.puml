@@ -1,0 +1,128 @@
+@startuml UseCase_Stokify
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #E8F5E9
+  BorderColor #388E3C
+  ArrowColor #388E3C
+  FontSize 12
+}
+skinparam actor {
+  BackgroundColor #1565C0
+  BorderColor #0D47A1
+  FontColor white
+  FontSize 14
+}
+skinparam rectangle {
+  BorderColor #1565C0
+  FontSize 16
+  FontStyle bold
+}
+
+title Use Case Diagram - Stokify\n(Manajemen Inventaris Gudang)
+
+rectangle "Stokify" {
+
+  package "Autentikasi" {
+    (Melakukan Login)
+    (Mendaftar Akun Baru)
+  }
+
+  package "Dashboard" {
+    (Melihat Dashboard)
+    (Melihat Statistik Stok)
+    (Melihat Total Aset)
+    (Melihat Produk Peringatan)
+  }
+
+  package "Manajemen Produk" {
+    (Menambahkan Produk Baru)
+    (Mengedit Data Produk)
+    (Menghapus Produk)
+    (Memilih Gambar dari Galeri)
+    (Mengambil Foto dari Kamera)
+    (Melihat Detail Produk)
+  }
+
+  package "Manajemen Stok" {
+    (Memperbarui Stok Masuk)
+    (Memperbarui Stok Keluar)
+    (Melihat Riwayat Perubahan Stok)
+  }
+
+  package "Pencarian & Filter" {
+    (Mencari Produk)
+    (Memfilter Berdasarkan Kategori)
+    (Menyortir Produk)
+  }
+
+  package "Laporan" {
+    (Melihat Laporan)
+    (Melihat Pie Chart Status Stok)
+    (Melihat Bar Chart per Kategori)
+    (Melihat Chart Stok Terendah)
+    (Mengekspor Laporan ke PDF)
+    (Mengekspor Laporan ke CSV)
+  }
+
+  package "Profil" {
+    (Melihat Profil)
+    (Melakukan Logout)
+  }
+}
+
+actor "Admin" as Admin
+actor "Staff" as Staff
+
+' === Admin Connections ===
+Admin --> (Melakukan Login)
+Admin --> (Mendaftar Akun Baru)
+Admin --> (Melihat Dashboard)
+Admin --> (Menambahkan Produk Baru)
+Admin --> (Mengedit Data Produk)
+Admin --> (Menghapus Produk)
+Admin --> (Memperbarui Stok Masuk)
+Admin --> (Memperbarui Stok Keluar)
+Admin --> (Melihat Laporan)
+Admin --> (Mengekspor Laporan ke PDF)
+Admin --> (Mengekspor Laporan ke CSV)
+Admin --> (Melihat Profil)
+Admin --> (Melakukan Logout)
+
+' === Staff Connections ===
+Staff --> (Melakukan Login)
+Staff --> (Mendaftar Akun Baru)
+Staff --> (Melihat Dashboard)
+Staff --> (Melihat Profil)
+Staff --> (Melakukan Logout)
+
+' === Common Use Cases ===
+(Melihat Dashboard) --> (Melihat Statistik Stok)
+(Melihat Dashboard) --> (Melihat Produk Peringatan)
+(Melihat Dashboard) ..> (Melihat Total Aset) : <<admin only>>
+
+(Menambahkan Produk Baru) --> (Memilih Gambar dari Galeri)
+(Menambahkan Produk Baru) --> (Mengambil Foto dari Kamera)
+(Mengedit Data Produk) --> (Memilih Gambar dari Galeri)
+(Mengedit Data Produk) --> (Mengambil Foto dari Kamera)
+
+(Melihat Laporan) --> (Melihat Pie Chart Status Stok)
+(Melihat Laporan) --> (Melihat Bar Chart per Kategori)
+(Melihat Laporan) --> (Melihat Chart Stok Terendah)
+
+Staff --> (Melihat Detail Produk)
+Staff --> (Melihat Riwayat Perubahan Stok)
+Staff --> (Mencari Produk)
+Staff --> (Memfilter Berdasarkan Kategori)
+Staff --> (Menyortir Produk)
+
+Admin --> (Melihat Detail Produk)
+Admin --> (Melihat Riwayat Perubahan Stok)
+Admin --> (Mencari Produk)
+Admin --> (Memfilter Berdasarkan Kategori)
+Admin --> (Menyortir Produk)
+
+(Mengambil Foto dari Kamera) ..> (Memilih Gambar dari Galeri) : <<alternatif>>
+
+@enduml

@@ -1,0 +1,247 @@
+@startuml UserFlow_Stokify
+skinparam activity {
+  BackgroundColor #E8F5E9
+  BorderColor #388E3C
+  ArrowColor #388E3C
+  FontSize 12
+}
+skinparam activityDiamond {
+  BackgroundColor #FFF9C4
+  BorderColor #F9A825
+}
+skinparam note {
+  BackgroundColor #FFF3E0
+  BorderColor #FF9800
+}
+
+title User Flow Diagram - Stokify
+
+start
+
+:Splash Screen
+(Logo Stokify, 1.5 detik);
+
+if (Session Login Ada?) then (Ya)
+  :Masuk ke Dashboard;
+else (Tidak)
+  :Tampilkan Halaman Login;
+endif
+
+partition "Autentikasi" {
+  :Buka Halaman Login;
+
+  repeat
+    :Input Username & Password;
+
+    if (Validasi Form?) then (Valid)
+      :Kirim data ke Database;
+      if (Data Cocok?) then (Ya)
+        :Simpan Session
+        (DataStore Preferences);
+        :Navigasi ke Dashboard;
+        break
+      else (Tidak)
+        :Tampilkan Error
+        ("Akun tidak ditemukan" / "Password salah");
+      endif
+    else (Tidak Valid)
+      :Tampilkan Error Validasi;
+    endif
+
+  repeat while (Login Berhasil?) is (Belum)
+    ->Belum punya akun?;
+    :Buka Halaman Register;
+    :Input Nama, Username, Password, Role;
+
+    if (Validasi Register?) then (Valid)
+      :Simpan User ke Database;
+      :Navigasi ke Login;
+    else (Tidak Valid)
+      :Tampilkan Error;
+    endif
+  repeat while (Kembali ke Login?)
+}
+
+partition "Dashboard" {
+  :Tampilkan Dashboard;
+
+  split
+    :Lihat Statistik Stok
+    (Habis/Menipis/Aman);
+    note right: 3 card status stok
+
+  split again
+    :Lihat Total Produk & Kategori;
+
+  split again
+    if (Role = Admin?) then (Admin)
+      :Lihat Total Aset;
+    else (Staff)
+      note right: Sembunyikan card aset
+    endif
+
+  split again
+    :Lihat Daftar Produk Peringatan;
+    :Klik Produk Peringatan;
+    :Navigasi ke Detail Produk;
+
+  end split
+}
+
+partition "Katalog Produk" {
+  :Buka Tab Katalog;
+
+  repeat
+    split
+      :Input Kata Kunci Pencarian;
+      :Tampilkan Hasil Pencarian;
+
+    split again
+      :Pilih Filter Kategori;
+      :Tampilkan Produk Terfilter;
+
+    split again
+      :Pilih Urutan Sortir;
+      :Tampilkan Produk Terurut;
+
+    split again
+      :Klik Item Produk;
+      :Navigasi ke Detail Produk;
+
+    end split
+
+  repeat while (Selesai?) is (Belum)
+    ->Admin;
+    :Klik FAB Tambah Produk;
+    :Buka Form Tambah Produk;
+}
+
+partition "Detail Produk" {
+  :Tampilkan Detail Produk
+  (Nama, SKU, Harga, Stok, Gambar, Lokasi);
+
+  split
+    :Lihat Riwayat Perubahan Stok;
+
+  split again
+    if (Role = Admin?) then (Admin)
+      split
+        :Klik Stok Masuk (+);
+        :Input Jumlah;
+        :Konfirmasi;
+        :Stok Bertambah;
+
+      split again
+        :Klik Stok Keluar (-);
+        :Input Jumlah;
+        if (Stok Cukup?) then (Ya)
+          :Konfirmasi;
+          :Stok Berkurang;
+        else (Tidak)
+          :Tampilkan Error
+          ("Stok tidak cukup");
+        endif
+
+      split again
+        :Klik Edit Produk;
+        :Buka Form Edit;
+        :Ubah Data;
+        :Simpan Perubahan;
+
+      split again
+        :Klik Hapus Produk;
+        :Konfirmasi Hapus;
+        if (Yakin Hapus?) then (Ya)
+          :Hapus Produk;
+          :Kembali ke Katalog;
+        else (Tidak)
+          :Batal;
+        endif
+
+      end split
+    else (Staff)
+      note right: Tidak ada tombol\nedit/hapus/update stok
+    endif
+
+  end split
+}
+
+partition "Form Produk (Tambah/Edit)" {
+  :Buka Form Produk;
+
+  repeat
+    :Input Data Produk
+    (SKU, Nama, Kategori, Stok, Min Stok, Harga, Lokasi);
+
+    :Pilih Gambar Produk;
+    split
+      :Ambil Foto dari Kamera;
+    split again
+      :Pilih dari Galeri;
+    end split
+
+    :Klik Simpan;
+
+    if (Validasi Form?) then (Valid)
+      :Simpan ke Database;
+      :Kembali ke Katalog;
+      break
+    else (Tidak Valid)
+      :Tampilkan Error;
+    endif
+
+  repeat while (Simpan Berhasil?) is (Belum)
+}
+
+partition "Laporan (Admin Only)" {
+  if (Role = Admin?) then (Admin)
+    :Buka Tab Laporan;
+
+    :Tampilkan Ringkasan
+    (Total Produk, Total Stok, Total Aset, Stok Kritis);
+
+    :Tampilkan Pie Chart
+    (Status Stok: Aman/Menipis/Habis);
+
+    :Tampilkan Bar Chart
+    (Distribusi per Kategori);
+
+    :Tampilkan Horizontal Bar Chart
+    (Top 5 Stok Terendah);
+
+    split
+      :Klik Export PDF;
+      :Generate File PDF;
+      :Share via Intent;
+
+    split again
+      :Klik Export CSV;
+      :Generate File CSV;
+      :Share via Intent;
+
+    end split
+  else (Staff)
+    note right: Tab Laporan\ntersembunyi
+  endif
+}
+
+partition "Profil & Logout" {
+  :Buka Tab Profil;
+
+  :Tampilkan Info Profil
+  (Nama, Username, Role);
+
+  :Klik Tombol Logout;
+
+  :Konfirmasi Logout;
+  if (Yakin Logout?) then (Ya)
+    :Hapus Session;
+    :Navigasi ke Login;
+  else (Tidak)
+    :Batal;
+  endif
+}
+
+stop
+
+@enduml
