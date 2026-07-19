@@ -51,9 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/hanken_grotesk_bold"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 tools:text="Ahmad Rizki" />
 
             <!-- Username -->
@@ -73,13 +73,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_role_badge"
-                android:fontFamily="@font/jetbrains_mono_medium"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="6dp"
                 android:text="Admin"
                 android:textColor="?attr/colorOnTertiaryContainer"
                 android:textSize="12sp"
-                android:letterSpacing="0.5" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -190,10 +189,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/hanken_grotesk_bold"
             android:text="@string/profile_about"
             android:textColor="?attr/colorOnSurface"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
