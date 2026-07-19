@@ -194,35 +194,48 @@ Menyimpan riwayat perubahan stok.
 
 ## Screenshots
 
-### Splash Screen
-<img src="screenshots/splash_screen.jpg" width="250">
-
-### Login
-<img src="screenshots/login.jpg" width="250">
-
-### Register
-<img src="screenshots/register.jpg" width="250">
-
-### Dashboard Admin
-<img src="screenshots/dashboard_admin.jpg" width="250">
-
-### Dashboard Staff
-<img src="screenshots/dashboard_staff.jpg" width="250">
-
-### Katalog Produk
-<img src="screenshots/katalog.jpg" width="250">
-
-### Detail Produk
-<img src="screenshots/detail.jpg" width="250">
-
-### Tambah Produk
-<img src="screenshots/form.jpg" width="250">
-
-### Laporan
-<img src="screenshots/report.jpg" width="250">
-
-### Profil
-<img src="screenshots/profile.jpg" width="250">
+<table>
+  <tr>
+    <td align="center"><b>Splash Screen</b></td>
+    <td align="center"><b>Login</b></td>
+    <td align="center"><b>Register</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/splash_screen.jpg" width="200"></td>
+    <td><img src="screenshots/login.jpg" width="200"></td>
+    <td><img src="screenshots/register.jpg" width="200"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Dashboard Admin</b></td>
+    <td align="center"><b>Dashboard Staff</b></td>
+    <td align="center"><b>Katalog Produk</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/dashboard_admin.jpg" width="200"></td>
+    <td><img src="screenshots/dashboard_staff.jpg" width="200"></td>
+    <td><img src="screenshots/katalog.jpg" width="200"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Detail Produk</b></td>
+    <td align="center"><b>Tambah Produk</b></td>
+    <td align="center"><b>Laporan</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/detail.jpg" width="200"></td>
+    <td><img src="screenshots/form.jpg" width="200"></td>
+    <td><img src="screenshots/report.jpg" width="200"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Profil</b></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/profile.jpg" width="200"></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
