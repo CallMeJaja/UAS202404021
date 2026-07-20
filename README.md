@@ -278,43 +278,19 @@ git clone https://github.com/CallMeJaja/UAS202404021.git
 
 ---
 
-## Rubrik Penilaian
-
-| Komponen | Bobot | Status |
-|----------|-------|--------|
-| Room Database (Entity, DAO, CRUD) | 25% | ✅ |
-| Arsitektur (Repository, ViewModel, ViewBinding) | 20% | ✅ |
-| Fungsionalitas Aplikasi | 20% | ✅ |
-| UI/UX dan Material Design | 15% | ✅ |
-| Dokumentasi & Presentasi | 10% | 🔄 |
-| Kreativitas & Nilai Tambahan | 10% | ✅ |
-
-### Nilai Tambahan yang Diimplementasikan
-- ✅ Filter data by kategori
-- ✅ Sorting data (nama/harga/stok)
-- ✅ Export PDF/CSV
-- ✅ Dashboard statistik
-- ✅ Multi Role User (Admin/Staff)
-- ✅ Dark Theme
-- ✅ Git Commit History yang rapi
-
----
-
 ## Tim Pengembang
 
 | Nama | NIM | Peran |
 |------|-----|-------|
-| [Nama Anggota 1] | [NIM] | [Peran] |
-| [Nama Anggota 2] | [NIM] | [Peran] |
-| [Nama Anggota 3] | [NIM] | [Peran] |
+| Reza Asriano Maualana | 202404021 | Developer |
 
-**Dosen Pengampu**: Musawarman
+**Dosen Pengampu**: Musawarman, S.Kom., M.M.S.I.
 
 **Mata Kuliah**: Workshop Pemrograman Android I
 
 **Program Studi**: Teknologi Rekayasa Perangkat Lunak
 
-**Institusi**: Politeknik Enjinering Indorama Eva
+**Institusi**: Politeknik Enjinering Indorama
 
 **Tahun Akademik**: 2025/2026 (Genap)
 
